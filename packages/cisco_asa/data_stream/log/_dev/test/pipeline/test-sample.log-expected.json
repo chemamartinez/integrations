@@ -6664,7 +6664,7 @@
                     "connection_id": "261246338",
                     "destination_interface": "inside",
                     "source_interface": "outside",
-                    "source_username": "LOCAL\\First Last",
+                    "source_username": "LOCAL\\First Last)",
                     "termination_initiator": "outside",
                     "termination_user": "First Last"
                 }
@@ -6726,7 +6726,7 @@
                     "192.168.0.1"
                 ],
                 "user": [
-                    "First Last"
+                    "First Last)"
                 ]
             },
             "source": {
@@ -6746,7 +6746,7 @@
                 "ip": "67.43.156.15",
                 "port": 63790,
                 "user": {
-                    "name": "First Last"
+                    "name": "First Last)"
                 }
             },
             "tags": [
@@ -6760,7 +6760,7 @@
                     "connection_id": "261246338",
                     "destination_interface": "inside",
                     "source_interface": "outside",
-                    "source_username": "LOCAL\\Speciäl Ö01",
+                    "source_username": "LOCAL\\Speciäl Ö01)",
                     "termination_initiator": "outside",
                     "termination_user": "Speciäl Ö01"
                 }
@@ -6822,7 +6822,7 @@
                     "192.168.0.1"
                 ],
                 "user": [
-                    "Speciäl Ö01"
+                    "Speciäl Ö01)"
                 ]
             },
             "source": {
@@ -6842,7 +6842,7 @@
                 "ip": "67.43.156.15",
                 "port": 63790,
                 "user": {
-                    "name": "Speciäl Ö01"
+                    "name": "Speciäl Ö01)"
                 }
             },
             "tags": [
@@ -6856,7 +6856,7 @@
                     "connection_id": "261246338",
                     "destination_interface": "inside",
                     "source_interface": "outside",
-                    "source_username": "LOCAL\\domain\\Speciäl Ö1",
+                    "source_username": "LOCAL\\domain\\Speciäl Ö1)",
                     "termination_initiator": "outside",
                     "termination_user": "domain\\Speciäl Ö1"
                 }
@@ -6921,7 +6921,7 @@
                     "192.168.0.1"
                 ],
                 "user": [
-                    "Speciäl Ö1"
+                    "Speciäl Ö1)"
                 ]
             },
             "source": {
@@ -6942,7 +6942,7 @@
                 "port": 63790,
                 "user": {
                     "domain": "domain",
-                    "name": "Speciäl Ö1"
+                    "name": "Speciäl Ö1)"
                 }
             },
             "tags": [
@@ -6956,7 +6956,7 @@
                     "connection_id": "261246338",
                     "destination_interface": "inside",
                     "source_interface": "outside",
-                    "source_username": "LOCAL\\First Middle Last",
+                    "source_username": "LOCAL\\First Middle Last)",
                     "termination_initiator": "outside",
                     "termination_user": "First Middle Last"
                 }
@@ -7018,7 +7018,7 @@
                     "192.168.0.1"
                 ],
                 "user": [
-                    "First Middle Last"
+                    "First Middle Last)"
                 ]
             },
             "source": {
@@ -7038,7 +7038,7 @@
                 "ip": "67.43.156.15",
                 "port": 63790,
                 "user": {
-                    "name": "First Middle Last"
+                    "name": "First Middle Last)"
                 }
             },
             "tags": [
@@ -7052,7 +7052,7 @@
                     "connection_id": "261246338",
                     "destination_interface": "inside",
                     "source_interface": "outside",
-                    "source_username": "LOCAL\\First-Middle Last",
+                    "source_username": "LOCAL\\First-Middle Last)",
                     "termination_initiator": "outside",
                     "termination_user": "domain\\First-Middle Last"
                 }
@@ -7114,7 +7114,7 @@
                     "192.168.0.1"
                 ],
                 "user": [
-                    "First-Middle Last"
+                    "First-Middle Last)"
                 ]
             },
             "source": {
@@ -7134,7 +7134,7 @@
                 "ip": "67.43.156.15",
                 "port": 63790,
                 "user": {
-                    "name": "First-Middle Last"
+                    "name": "First-Middle Last)"
                 }
             },
             "tags": [
