@@ -3,6 +3,9 @@
   changes:
     - description: |
         Add support for Okta OIN and OAuth2 authentication.
+      type: enhancement
+      link: https://github.com/elastic/integrations/pull/17769
+    - description: |
         The Okta API token is now an optional parameter, as
         OAuth2 is included as an alternative authentication method.
       type: breaking-change
