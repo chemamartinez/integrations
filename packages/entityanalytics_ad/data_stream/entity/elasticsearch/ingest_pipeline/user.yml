@@ -198,6 +198,11 @@ processors:
       value: true
       if: ctx.activedirectory?.user?.uac_list?.contains('TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION') == true
 
+  - set:
+      field: user.entity.attributes.mfa_enabled
+      value: true
+      if: ctx.activedirectory?.user?.uac_list?.contains('SMARTCARD_REQUIRED') == true
+
   - script:
       lang: painless
       ignore_failure: true

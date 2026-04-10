@@ -75,6 +75,14 @@
       fields:
         - name: name
           type: keyword
+    - name: entity
+      type: group
+      fields:
+        - name: attributes
+          type: group
+          fields:
+            - name: mfa_enabled
+              type: boolean
     - name: profile
       type: group
       fields:
