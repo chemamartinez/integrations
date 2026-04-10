@@ -88,6 +88,36 @@
           fields:
             - name: last_activity
               type: date
+        - name: relationships
+          type: group
+          fields:
+            - name: supervises
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword
+            - name: owns
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword
+            - name: administered_by
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword
     - name: profile
       type: group
       fields:
@@ -131,3 +161,33 @@
           fields:
             - name: last_activity
               type: date
+        - name: relationships
+          type: group
+          fields:
+            - name: owns
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword
+            - name: administered_by
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword
+            - name: supervises
+              type: group
+              fields:
+                - name: id
+                  type: keyword
+                - name: name
+                  type: keyword
+                - name: domain
+                  type: keyword

@@ -61,6 +61,12 @@
           description: The user's email address from Active Directory.
         - name: member_of
           type: keyword
+        - name: direct_reports
+          type: keyword
+        - name: managed_by
+          type: keyword
+        - name: managed_objects
+          type: keyword
         - name: msDS-*
           type: keyword
         - name: name
@@ -176,6 +182,12 @@
           type: boolean
           description: True if a logon script is configured for the account.
         - name: member_of
+          type: keyword
+        - name: direct_reports
+          type: keyword
+        - name: managed_by
+          type: keyword
+        - name: managed_objects
           type: keyword
         - name: msDS-*
           type: keyword
@@ -294,6 +306,12 @@
           type: keyword
           description: The user's email address from Active Directory.
         - name: member_of
+          type: keyword
+        - name: direct_reports
+          type: keyword
+        - name: managed_by
+          type: keyword
+        - name: managed_objects
           type: keyword
         - name: msDS-*
           type: keyword

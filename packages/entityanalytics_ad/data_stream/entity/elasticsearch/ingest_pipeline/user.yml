@@ -266,6 +266,71 @@ processors:
           ctx.activedirectory.user.privileged_group_member = false;
         }
 
+  - script:
+      lang: painless
+      ignore_failure: true
+      tag: set_user_relationships
+      description: Build user.entity.relationships from directReports (supervises), managedObjects (owns), and managedBy (administered_by).
+      if: ctx.activedirectory?.user?.direct_reports != null || ctx.activedirectory?.user?.managed_objects != null || ctx.activedirectory?.user?.managed_by != null
+      source: |-
+        def parseDn(def dn) {
+          def result = ['id': dn];
+          int start = 0;
+          def dcParts = new ArrayList();
+          boolean cnFound = false;
+          while (start < dn.length()) {
+            int end = dn.indexOf(',', start);
+            if (end == -1) end = dn.length();
+            def part = dn.substring(start, end).trim();
+            if (!cnFound && part.length() > 3 && part.substring(0, 3).equalsIgnoreCase('CN=')) {
+              result['name'] = part.substring(3);
+              cnFound = true;
+            } else if (part.length() > 3 && part.substring(0, 3).equalsIgnoreCase('DC=')) {
+              dcParts.add(part.substring(3));
+            }
+            start = end + 1;
+          }
+          if (!dcParts.isEmpty()) {
+            def domain = dcParts[0];
+            for (int i = 1; i < dcParts.size(); i++) {
+              domain += '.' + dcParts[i];
+            }
+            result['domain'] = domain;
+          }
+          return result;
+        }
+        def buildRel(def dns) {
+          def rel = [:];
+          def dnList = (dns instanceof List) ? dns : [dns];
+          for (def dn : dnList) {
+            if (!(dn instanceof String) || dn.isEmpty()) continue;
+            def p = parseDn(dn);
+            if (!rel.containsKey('id')) rel['id'] = new ArrayList();
+            rel['id'].add(p['id']);
+            if (p.containsKey('name')) {
+              if (!rel.containsKey('name')) rel['name'] = new ArrayList();
+              rel['name'].add(p['name']);
+            }
+            if (p.containsKey('domain')) {
+              if (!rel.containsKey('domain')) rel['domain'] = new ArrayList();
+              rel['domain'].add(p['domain']);
+            }
+          }
+          return rel;
+        }
+        ctx.user = ctx.user ?: [:];
+        ctx.user.entity = ctx.user.entity ?: [:];
+        ctx.user.entity.relationships = ctx.user.entity.relationships ?: [:];
+        if (ctx.activedirectory?.user?.direct_reports != null) {
+          ctx.user.entity.relationships.supervises = buildRel(ctx.activedirectory.user.direct_reports);
+        }
+        if (ctx.activedirectory?.user?.managed_objects != null) {
+          ctx.user.entity.relationships.owns = buildRel(ctx.activedirectory.user.managed_objects);
+        }
+        if (ctx.activedirectory?.user?.managed_by != null) {
+          ctx.user.entity.relationships.administered_by = buildRel(ctx.activedirectory.user.managed_by);
+        }
+
   - set:
       field: activedirectory.user.account_never_expires
       value: true
