@@ -110,7 +110,18 @@ processors:
             field: activedirectory.user.pwd_last_set
         - append:
             field: error.message
-            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'       
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - date:
+      field: activedirectory.user.last_logon_timestamp
+      target_field: user.entity.lifecycle.last_activity
+      tag: date_user_last_logon_timestamp
+      formats:
+        - ISO8601
+      if: ctx.activedirectory?.user?.last_logon_timestamp != null && ctx.activedirectory.user.last_logon_timestamp != ''
+      on_failure:
+        - append:
+            field: error.message
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
 
   - set:
       field: asset.name

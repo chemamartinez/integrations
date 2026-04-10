@@ -113,3 +113,8 @@
           fields:
             - name: managed
               type: boolean
+        - name: lifecycle
+          type: group
+          fields:
+            - name: last_activity
+              type: date
