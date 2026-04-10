@@ -180,6 +180,11 @@ processors:
       value: true
       if: ctx.activedirectory?.device?.uac_list?.contains('TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION') == true
 
+  - set:
+      field: host.entity.attributes.managed
+      value: true
+      if: ctx.activedirectory?.device?.uac_list?.contains('WORKSTATION_TRUST_ACCOUNT') == true || ctx.activedirectory?.device?.uac_list?.contains('SERVER_TRUST_ACCOUNT') == true
+
   - script:
       lang: painless
       ignore_failure: true

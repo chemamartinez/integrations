@@ -110,3 +110,14 @@
           type: keyword
         - name: type
           type: keyword
+- name: host
+  type: group
+  fields:
+    - name: entity
+      type: group
+      fields:
+        - name: attributes
+          type: group
+          fields:
+            - name: managed
+              type: boolean
