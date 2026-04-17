@@ -305,6 +305,7 @@ The following non-ECS fields are used in inventory documents:
 | jamf_pro.inventory.local_user_accounts.admin |  | boolean |
 | jamf_pro.inventory.local_user_accounts.azure_active_directory_id |  | keyword |
 | jamf_pro.inventory.local_user_accounts.computer_azure_active_directory_id |  | keyword |
+| jamf_pro.inventory.local_user_accounts.email |  | keyword |
 | jamf_pro.inventory.local_user_accounts.file_vault2enabled |  | boolean |
 | jamf_pro.inventory.local_user_accounts.full_name |  | keyword |
 | jamf_pro.inventory.local_user_accounts.fullname |  | keyword |
@@ -376,6 +377,7 @@ The following non-ECS fields are used in inventory documents:
 | jamf_pro.inventory.user_and_location.realname |  | keyword |
 | jamf_pro.inventory.user_and_location.room |  | keyword |
 | jamf_pro.inventory.user_and_location.username |  | keyword |
+| user.entity.attributes.administered_by.email |  | keyword |
 | user.entity.attributes.administered_by.user_id |  | keyword |
 | user.entity.attributes.administered_by.username |  | keyword |
 
