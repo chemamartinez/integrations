@@ -195,7 +195,10 @@
                     "email": "bob.jones@example.com"
                 },
                 "credentials": {
-                    "provider": {"type": "OKTA", "name": "OKTA"},
+                    "provider": {
+                        "type": "OKTA",
+                        "name": "OKTA"
+                    },
                     "recovery_question": {}
                 }
             },
@@ -211,9 +214,15 @@
                 }
             ],
             "okta_domain": "trial-xxxxxxx-admin.okta.com",
-            "user": {"id": "00ub0oNGTSWTBKOLGLNA"},
-            "input": {"type": "entity-analytics"},
-            "ecs": {"version": "8.0.0"}
+            "user": {
+                "id": "00ub0oNGTSWTBKOLGLNA"
+            },
+            "input": {
+                "type": "entity-analytics"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            }
         },
         {
             "@timestamp": "2023-06-13T07:12:17.341Z",
@@ -244,6 +253,65 @@
             "okta_domain": "trial-xxxxxxx-admin.okta.com",
             "user": {
                 "id": "00ub0oNGTSWTBKOLGLNZ"
+            },
+            "input": {
+                "type": "entity-analytics"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            }
+        },
+        {
+            "@timestamp": "2023-06-13T07:12:17.341Z",
+            "okta": {
+                "id": "00ub0oNGTSWTBKOLGLNB",
+                "status": "ACTIVE",
+                "created": "2021-03-01T00:00:00.000Z",
+                "activated": "2021-03-01T00:00:01.000Z",
+                "statusChanged": "2021-03-01T00:00:01.000Z",
+                "lastLogin": "2023-06-01T08:00:00.000Z",
+                "lastUpdated": "2023-06-01T08:00:00.000Z",
+                "profile": {
+                    "login": "carol.admin@example.com",
+                    "firstName": "Carol",
+                    "lastName": "Admin",
+                    "email": "carol.admin@example.com"
+                },
+                "credentials": {
+                    "provider": {
+                        "type": "OKTA",
+                        "name": "OKTA"
+                    },
+                    "recovery_question": {}
+                }
+            },
+            "roles": [
+                {
+                    "id": "cr0Yq6IJxGIr0ouum0g3",
+                    "role": "cr0Yq6IJxGIr0ouum0g3",
+                    "label": "Custom role",
+                    "type": "CUSTOM",
+                    "status": "ACTIVE",
+                    "created": "2024-01-15T10:00:00.000Z",
+                    "lastUpdated": "2024-01-15T10:00:00.000Z",
+                    "assignmentType": "USER",
+                    "permissions": [
+                        {
+                            "label": "okta.users.read",
+                            "created": "2024-01-15T10:00:00.000Z",
+                            "lastUpdated": "2024-01-15T10:00:00.000Z"
+                        },
+                        {
+                            "label": "okta.apps.read",
+                            "created": "2024-01-15T10:00:00.000Z",
+                            "lastUpdated": "2024-01-15T10:00:00.000Z"
+                        }
+                    ]
+                }
+            ],
+            "okta_domain": "trial-xxxxxxx-admin.okta.com",
+            "user": {
+                "id": "00ub0oNGTSWTBKOLGLNB"
             },
             "input": {
                 "type": "entity-analytics"

@@ -273,3 +273,18 @@
         - name: assignment_type
           type: keyword
           description: The Okta type the role is assigned to.
+        - name: role
+          type: keyword
+          description: The role definition ID for custom roles.
+        - name: permissions
+          type: group
+          fields:
+            - name: label
+              type: keyword
+              description: Permission label.
+            - name: created
+              type: date
+              description: When the permission was created.
+            - name: last_updated
+              type: date
+              description: When the permission was last updated.

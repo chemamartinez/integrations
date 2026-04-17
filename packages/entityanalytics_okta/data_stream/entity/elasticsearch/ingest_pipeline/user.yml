@@ -300,6 +300,39 @@ processors:
                 field: _ingest._value.last_updated
                 target_field: _ingest._value.lastUpdated
                 ignore_failure: true
+  - foreach:
+      field: entityanalytics_okta.roles
+      if: ctx.entityanalytics_okta?.roles instanceof List
+      processor:
+        foreach:
+          field: _ingest._value.permissions
+          ignore_missing: true
+          processor:
+            rename:
+              field: _ingest._value.lastUpdated
+              target_field: _ingest._value.last_updated
+              tag: rename_user_roles_permissions.lastUpdated
+              ignore_missing: true
+  - script:
+      lang: painless
+      tag: painless_extract_role_permissions
+      description: Extract permission labels from custom role permissions into user.entity.attributes.permissions.
+      if: ctx.entityanalytics_okta?.roles instanceof List
+      source: |
+        for (def role : ctx.entityanalytics_okta.roles) {
+          if (!(role?.permissions instanceof List)) continue;
+          for (def perm : role.permissions) {
+            def label = perm?.label;
+            if (label == null || label == '') continue;
+            if (ctx.user == null) ctx.user = new HashMap();
+            if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+            if (ctx.user.entity.attributes == null) ctx.user.entity.attributes = new HashMap();
+            if (ctx.user.entity.attributes.permissions == null) ctx.user.entity.attributes.permissions = new ArrayList();
+            if (!ctx.user.entity.attributes.permissions.contains(label)) {
+              ctx.user.entity.attributes.permissions.add(label);
+            }
+          }
+        }
   - rename:
       field: factors
       target_field: entityanalytics_okta.user.factors

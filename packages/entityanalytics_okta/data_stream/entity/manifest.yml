@@ -141,6 +141,17 @@ streams:
           Enrich user entities with their Okta MFA factor data to determine whether MFA is enabled.
           Enabling this setting increases the number of requests to the /api/v1/users endpoint,
           with one request per user, which counts toward your Okta rate limits.
+      - name: enrich_user_perms
+        type: bool
+        title: Enrich User Permissions
+        multi: false
+        required: false
+        show_user: true
+        default: false
+        description: >-
+          Enrich user entities with the permissions assigned to their custom Okta roles. Enabling
+          this option implicitly enables role enrichment. Requires the okta.roles.read OAuth2 scope
+          and introduces one additional API call per custom role per user.
       - name: sync_interval
         type: text
         title: Sync Interval

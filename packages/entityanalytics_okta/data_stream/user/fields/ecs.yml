@@ -125,3 +125,5 @@
           fields:
             - name: mfa_enabled
               type: boolean
+            - name: permissions
+              type: keyword
