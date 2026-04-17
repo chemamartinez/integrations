@@ -4,11 +4,6 @@
     - name: entity
       type: group
       fields:
-        - name: attributes
-          type: group
-          fields:
-            - name: managed
-              type: boolean
         - name: lifecycle
           type: group
           fields:

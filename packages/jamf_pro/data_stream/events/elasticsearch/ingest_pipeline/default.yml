@@ -74,6 +74,11 @@ processors:
     formats:
       - UNIX_MS
 
+- set:
+    field: host.entity.lifecycle.last_activity
+    copy_from: jamf_pro.events.webhook.event_timestamp
+    ignore_empty_value: true
+
 ##############
 #   IP src   #
 ##############

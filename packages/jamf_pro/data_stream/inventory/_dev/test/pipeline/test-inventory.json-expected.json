@@ -139,6 +139,9 @@
                 "entity": {
                     "attributes": {
                         "managed": true
+                    },
+                    "lifecycle": {
+                        "last_activity": "2024-04-18T14:26:51.514Z"
                     }
                 },
                 "geo": {
@@ -235,6 +238,9 @@
                 "entity": {
                     "attributes": {
                         "managed": true
+                    },
+                    "lifecycle": {
+                        "last_activity": "2024-04-18T14:26:51.514Z"
                     }
                 },
                 "geo": {
