@@ -255,6 +255,27 @@ processors:
         allow_duplicates: false
     ignore_missing: true
     ignore_failure: true
+- script:
+    tag: script_collect_admin_accounts
+    lang: painless
+    if: ctx.jamf_pro.inventory?.local_user_accounts != null
+    source: |-
+      List admins = new ArrayList();
+      for (def acct : ctx.jamf_pro.inventory.local_user_accounts) {
+        if (acct.admin == true) {
+          Map entry = new HashMap();
+          if (acct.uid != null && acct.uid != "") entry.put("user_id", acct.uid);
+          if (acct.username != null && acct.username != "") entry.put("username", acct.username);
+          if (acct.email != null && acct.email != "") entry.put("email", acct.email);
+          if (!entry.isEmpty()) admins.add(entry);
+        }
+      }
+      if (!admins.isEmpty()) {
+        if (ctx.user == null) ctx.user = [:];
+        if (ctx.user.entity == null) ctx.user.entity = [:];
+        if (ctx.user.entity.attributes == null) ctx.user.entity.attributes = [:];
+        ctx.user.entity.attributes.administered_by = admins;
+      }
 - append:
     field: related.user
     value: '{{{user.email}}}'

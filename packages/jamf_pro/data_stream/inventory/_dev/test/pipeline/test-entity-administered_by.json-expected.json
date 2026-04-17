@@ -1,0 +1,150 @@
+{
+    "expected": [
+        {
+            "ecs": {
+                "version": "8.17.0"
+            },
+            "event": {
+                "kind": "asset"
+            },
+            "host": {
+                "address": [
+                    "89.160.20.156"
+                ],
+                "entity": {
+                    "attributes": {
+                        "managed": true
+                    }
+                },
+                "geo": {
+                    "city_name": "Linköping",
+                    "continent_name": "Europe",
+                    "country_iso_code": "SE",
+                    "country_name": "Sweden",
+                    "location": {
+                        "lat": 58.4167,
+                        "lon": 15.6167
+                    },
+                    "region_iso_code": "SE-E",
+                    "region_name": "Östergötland County"
+                },
+                "id": "C3D4E5F6-A7B8-9012-CDEF-012345678902",
+                "ip": [
+                    "89.160.20.156"
+                ],
+                "name": "test-device-admins",
+                "os": {
+                    "platform": "Mac"
+                }
+            },
+            "jamf_pro": {
+                "inventory": {
+                    "general": {
+                        "declarative_device_management_enabled": false,
+                        "enrolled_via_automated_device_enrollment": false,
+                        "itunes_store_account_active": false,
+                        "last_ip_address": "89.160.20.156",
+                        "last_ip_address_geo": {
+                            "city_name": "Linköping",
+                            "continent_name": "Europe",
+                            "country_iso_code": "SE",
+                            "country_name": "Sweden",
+                            "location": {
+                                "lat": 58.4167,
+                                "lon": 15.6167
+                            },
+                            "region_iso_code": "SE-E",
+                            "region_name": "Östergötland County"
+                        },
+                        "management_id": "c3d4e5f6-a7b8-9012-cdef-012345678902",
+                        "mdm_capable": {
+                            "capable": true
+                        },
+                        "name": "test-device-admins",
+                        "platform": "Mac",
+                        "remote_management": {
+                            "managed": true
+                        },
+                        "report_date": "2024-06-19T15:54:37.692Z",
+                        "supervised": true,
+                        "user_approved_mdm": false
+                    },
+                    "id": "20",
+                    "local_user_accounts": [
+                        {
+                            "admin": true,
+                            "email": "alice@example.com",
+                            "file_vault2enabled": true,
+                            "full_name": "Alice Example",
+                            "home_directory": "/Users/alice",
+                            "home_directory_size_mb": 50000,
+                            "password_history_depth": 5,
+                            "password_max_age": 90,
+                            "password_min_complex_characters": 1,
+                            "password_min_length": 8,
+                            "password_require_alphanumeric": true,
+                            "uid": "501",
+                            "user_account_type": "localUser",
+                            "username": "alice"
+                        },
+                        {
+                            "admin": false,
+                            "file_vault2enabled": false,
+                            "full_name": "Bob Example",
+                            "home_directory": "/Users/bob",
+                            "home_directory_size_mb": 30000,
+                            "password_history_depth": 5,
+                            "password_max_age": 90,
+                            "password_min_complex_characters": 1,
+                            "password_min_length": 8,
+                            "password_require_alphanumeric": true,
+                            "uid": "502",
+                            "user_account_type": "localUser",
+                            "username": "bob"
+                        },
+                        {
+                            "admin": true,
+                            "email": "carol@example.com",
+                            "file_vault2enabled": true,
+                            "full_name": "Carol Example",
+                            "home_directory": "/Users/carol",
+                            "home_directory_size_mb": 40000,
+                            "password_history_depth": 10,
+                            "password_max_age": 60,
+                            "password_min_complex_characters": 2,
+                            "password_min_length": 12,
+                            "password_require_alphanumeric": true,
+                            "uid": "503",
+                            "user_account_type": "localUser",
+                            "username": "carol"
+                        }
+                    ],
+                    "udid": "C3D4E5F6-A7B8-9012-CDEF-012345678902"
+                }
+            },
+            "related": {
+                "ip": [
+                    "89.160.20.156"
+                ]
+            },
+            "user": {
+                "entity": {
+                    "attributes": {
+                        "administered_by": [
+                            {
+                                "email": "alice@example.com",
+                                "user_id": "501",
+                                "username": "alice"
+                            },
+                            {
+                                "email": "carol@example.com",
+                                "user_id": "503",
+                                "username": "carol"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ]
+}
