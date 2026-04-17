@@ -124,7 +124,8 @@
                     "serialNumber": "1XXXX0X0X",
                     "registered": true,
                     "secureHardwarePresent": false,
-                    "diskEncryptionType": "ALL_INTERNAL_VOLUMES"
+                    "diskEncryptionType": "ALL_INTERNAL_VOLUMES",
+                    "managed": true
                 }
             },
             "okta_domain": "trial-xxxxxxx-admin.okta.com",
