@@ -70,6 +70,18 @@
                     ],
                     "udid": "D6DD5611-B15A-5AA1-B498-52A4CB17D18D"
                 }
+            },
+            "user": {
+                "group": {
+                    "id": [
+                        "1",
+                        "4"
+                    ],
+                    "name": [
+                        "All Managed Clients",
+                        "Computers with updates"
+                    ]
+                }
             }
         },
         {
@@ -439,6 +451,18 @@
                         "version": "14.7.2"
                     },
                     "udid": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
+                }
+            },
+            "user": {
+                "group": {
+                    "id": [
+                        "1",
+                        "5"
+                    ],
+                    "name": [
+                        "All Managed Clients",
+                        "Zero Touch Devices"
+                    ]
                 }
             }
         },

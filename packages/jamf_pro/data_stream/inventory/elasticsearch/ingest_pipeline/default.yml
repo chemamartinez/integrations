@@ -235,6 +235,26 @@ processors:
     field: user.full_name
     copy_from: jamf_pro.inventory.user_and_location.realname
     ignore_empty_value: true
+- foreach:
+    field: jamf_pro.inventory.group_memberships
+    if: ctx.jamf_pro.inventory?.group_memberships != null
+    processor:
+      append:
+        field: user.group.name
+        value: '{{{_ingest._value.group_name}}}'
+        allow_duplicates: false
+    ignore_missing: true
+    ignore_failure: true
+- foreach:
+    field: jamf_pro.inventory.group_memberships
+    if: ctx.jamf_pro.inventory?.group_memberships != null
+    processor:
+      append:
+        field: user.group.id
+        value: '{{{_ingest._value.group_id}}}'
+        allow_duplicates: false
+    ignore_missing: true
+    ignore_failure: true
 - append:
     field: related.user
     value: '{{{user.email}}}'
