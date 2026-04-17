@@ -127,6 +127,11 @@
                     }
                 },
                 "email": "isaac.brock@example.com",
+                "entity": {
+                    "lifecycle": {
+                        "last_activity": "2013-06-24T17:39:19.000Z"
+                    }
+                },
                 "full_name": "Isaac Brock",
                 "geo": {
                     "city_name": "San Francisco",
@@ -327,6 +332,11 @@
                     }
                 },
                 "email": "isaac.brock@example.com",
+                "entity": {
+                    "lifecycle": {
+                        "last_activity": "2013-06-24T17:39:19.000Z"
+                    }
+                },
                 "full_name": "Isaac Brock",
                 "geo": {
                     "city_name": "San Francisco",

@@ -179,6 +179,11 @@ processors:
       copy_from: entityanalytics_okta.user.last_login
       tag: set_asset_last_seen
       ignore_empty_value: true
+  - set:
+      field: user.entity.lifecycle.last_activity
+      copy_from: entityanalytics_okta.user.last_login
+      tag: set_user_entity_lifecycle_last_activity
+      ignore_empty_value: true
   - date:
       field: okta.lastUpdated
       target_field: entityanalytics_okta.user.last_updated

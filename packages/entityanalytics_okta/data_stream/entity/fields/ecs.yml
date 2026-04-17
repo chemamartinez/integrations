@@ -102,6 +102,14 @@
           type: keyword
         - name: type
           type: keyword
+    - name: entity
+      type: group
+      fields:
+        - name: lifecycle
+          type: group
+          fields:
+            - name: last_activity
+              type: date
 - name: device.serial_number
   type: keyword
   description: The unique serial number serves as a distinct identifier for each device, aiding in inventory management and device authentication.

@@ -102,3 +102,11 @@
           type: keyword
         - name: type
           type: keyword
+    - name: entity
+      type: group
+      fields:
+        - name: lifecycle
+          type: group
+          fields:
+            - name: last_activity
+              type: date
