@@ -133,11 +133,14 @@
                 "kind": "asset"
             },
             "host": {
-                "id": "5982CE36-4526-580B-B4B9-ECC6782535BC",
-                "name": "acme-C07DM3AZQ6NV",
                 "address": [
                     "89.160.20.156"
                 ],
+                "entity": {
+                    "attributes": {
+                        "managed": true
+                    }
+                },
                 "geo": {
                     "city_name": "Linköping",
                     "continent_name": "Europe",
@@ -150,9 +153,11 @@
                     "region_iso_code": "SE-E",
                     "region_name": "Östergötland County"
                 },
+                "id": "5982CE36-4526-580B-B4B9-ECC6782535BC",
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "name": "acme-C07DM3AZQ6NV"
             },
             "jamf_pro": {
                 "inventory": {
@@ -224,11 +229,14 @@
                 "kind": "asset"
             },
             "host": {
-                "id": "5982CE36-4526-580B-B4B9-ECC6782535BC",
-                "name": "acme-C07DM3AZQ6NV",
                 "address": [
                     "89.160.20.156"
                 ],
+                "entity": {
+                    "attributes": {
+                        "managed": true
+                    }
+                },
                 "geo": {
                     "city_name": "Linköping",
                     "continent_name": "Europe",
@@ -241,9 +249,11 @@
                     "region_iso_code": "SE-E",
                     "region_name": "Östergötland County"
                 },
+                "id": "5982CE36-4526-580B-B4B9-ECC6782535BC",
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "name": "acme-C07DM3AZQ6NV"
             },
             "jamf_pro": {
                 "inventory": {
