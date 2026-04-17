@@ -110,6 +110,16 @@
           fields:
             - name: last_activity
               type: date
+        - name: relationships
+          type: group
+          fields:
+            - name: administered_by
+              type: group
+              fields:
+                - name: user_id
+                  type: keyword
+                - name: username
+                  type: keyword
 - name: device.serial_number
   type: keyword
   description: The unique serial number serves as a distinct identifier for each device, aiding in inventory management and device authentication.

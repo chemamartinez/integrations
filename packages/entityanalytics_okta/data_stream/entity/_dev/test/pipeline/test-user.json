@@ -24,7 +24,7 @@
                     "userType": "Employee",
                     "organization": "Okta",
                     "title": "Director",
-                    "division": "R\u0026D",
+                    "division": "R&D",
                     "department": "Engineering",
                     "costCenter": "10",
                     "employeeNumber": "187",
@@ -92,7 +92,7 @@
                     "userType": "Employee",
                     "organization": "Okta",
                     "title": "Director",
-                    "division": "R\u0026D",
+                    "division": "R&D",
                     "department": "Engineering",
                     "costCenter": "10",
                     "employeeNumber": "187",
@@ -170,6 +170,43 @@
             },
             "event": {
                 "action": "user-modified"
+            },
+            "input": {
+                "type": "entity-analytics"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            }
+        },
+        {
+            "@timestamp": "2023-06-13T07:12:17.341Z",
+            "okta": {
+                "id": "00ub0oNGTSWTBKOLGLNZ",
+                "status": "ACTIVE",
+                "created": "2020-01-10T12:00:00.000Z",
+                "activated": "2020-01-10T12:00:01.000Z",
+                "statusChanged": "2020-01-10T12:00:01.000Z",
+                "lastLogin": "2023-06-10T09:00:00.000Z",
+                "lastUpdated": "2023-06-10T09:00:00.000Z",
+                "profile": {
+                    "login": "alice.smith@example.com",
+                    "firstName": "Alice",
+                    "lastName": "Smith",
+                    "email": "alice.smith@example.com",
+                    "managerId": "00ub0oNGTSWTBKOLGLNR",
+                    "manager": "Isaac Brock"
+                },
+                "credentials": {
+                    "provider": {
+                        "type": "OKTA",
+                        "name": "OKTA"
+                    },
+                    "recovery_question": {}
+                }
+            },
+            "okta_domain": "trial-xxxxxxx-admin.okta.com",
+            "user": {
+                "id": "00ub0oNGTSWTBKOLGLNZ"
             },
             "input": {
                 "type": "entity-analytics"
