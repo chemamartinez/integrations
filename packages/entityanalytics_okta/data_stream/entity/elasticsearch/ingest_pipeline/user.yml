@@ -354,6 +354,29 @@ processors:
           }
         }
   - rename:
+      field: devices
+      target_field: entityanalytics_okta.user.devices
+      tag: rename_user_devices
+      ignore_missing: true
+  - script:
+      lang: painless
+      tag: painless_set_user_entity_relationships_owns
+      description: Build user.entity.relationships.owns from enrolled device list.
+      if: ctx.entityanalytics_okta?.user?.devices instanceof List
+      source: |
+        def owns = new ArrayList();
+        for (def device : ctx.entityanalytics_okta.user.devices) {
+          def entry = new HashMap();
+          entry.put("host_id", device?.id);
+          def displayName = device?.profile?.displayName;
+          if (displayName != null) entry.put("hostname", displayName);
+          owns.add(entry);
+        }
+        if (ctx.user == null) ctx.user = new HashMap();
+        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user.entity.relationships.put("owns", owns);
+  - rename:
       field: okta.transitioningToStatus
       target_field: entityanalytics_okta.user.transitioning_to_status
       tag: user_transitioning_to_status

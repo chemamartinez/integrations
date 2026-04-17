@@ -238,6 +238,9 @@
             - name: profile
               type: flattened
               description: Factor profile details.
+        - name: devices
+          type: flattened
+          description: Devices enrolled for the user.
     - name: groups
       type: group
       fields:

@@ -319,6 +319,36 @@
             "ecs": {
                 "version": "8.0.0"
             }
+        },
+        {
+            "@timestamp": "2024-01-01T00:00:00.000Z",
+            "event": {
+                "action": "user-discovered"
+            },
+            "devices": [
+                {
+                    "id": "guo4a5uyerdpvAiJT0h7",
+                    "status": "ACTIVE",
+                    "created": "2024-01-01T00:00:00.000Z",
+                    "lastUpdated": "2024-01-01T00:00:00.000Z",
+                    "profile": {
+                        "displayName": "Dave's MacBook Pro",
+                        "platform": "MACOS",
+                        "osVersion": "14.2.1",
+                        "serialNumber": "C02ZW1XKMD6T"
+                    }
+                }
+            ],
+            "okta_domain": "trial-xxxxxxx-admin.okta.com",
+            "user": {
+                "id": "00ub0oNGTSWTBKOLGLND"
+            },
+            "input": {
+                "type": "entity-analytics"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            }
         }
     ]
 }

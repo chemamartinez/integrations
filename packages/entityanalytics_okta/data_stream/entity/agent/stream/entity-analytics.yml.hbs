@@ -47,6 +47,9 @@ enrich_with:
 {{#if enrich_user_perms}}
   - perms
 {{/if}}
+{{#if enrich_user_devices}}
+  - devices
+{{/if}}
 {{#if proxy_url}}
 request.proxy_url: {{proxy_url}}
 {{/if}}

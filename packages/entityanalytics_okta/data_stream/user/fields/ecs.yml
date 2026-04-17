@@ -120,6 +120,13 @@
                   type: keyword
                 - name: username
                   type: keyword
+            - name: owns
+              type: group
+              fields:
+                - name: host_id
+                  type: keyword
+                - name: hostname
+                  type: keyword
         - name: attributes
           type: group
           fields:

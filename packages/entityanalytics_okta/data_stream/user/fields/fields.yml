@@ -157,6 +157,9 @@
         - name: type
           type: flattened
           description: user type that determines the schema for the user's profile.
+        - name: devices
+          type: flattened
+          description: Devices enrolled for the user.
     - name: groups
       type: group
       fields:
