@@ -185,6 +185,11 @@ processors:
       tag: rename_device_profile_display_name
       ignore_missing: true
   - rename:
+      field: okta.profile.osVersion
+      target_field: host.os.version
+      tag: rename_device_profile_os_version
+      ignore_missing: true
+  - rename:
       field: okta.profile.sid
       target_field: entityanalytics_okta.device.profile.sid
       tag: rename_device_profile_sid
