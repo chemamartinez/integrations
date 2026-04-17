@@ -157,7 +157,10 @@
                 "ip": [
                     "89.160.20.156"
                 ],
-                "name": "acme-C07DM3AZQ6NV"
+                "name": "acme-C07DM3AZQ6NV",
+                "os": {
+                    "platform": "Mac"
+                }
             },
             "jamf_pro": {
                 "inventory": {
@@ -212,9 +215,6 @@
                     "udid": "5982CE36-4526-580B-B4B9-ECC6782535BC"
                 }
             },
-            "os": {
-                "platform": "Mac"
-            },
             "related": {
                 "ip": [
                     "89.160.20.156"
@@ -253,7 +253,10 @@
                 "ip": [
                     "89.160.20.156"
                 ],
-                "name": "acme-C07DM3AZQ6NV"
+                "name": "acme-C07DM3AZQ6NV",
+                "os": {
+                    "platform": "Mac"
+                }
             },
             "jamf_pro": {
                 "inventory": {
@@ -316,9 +319,6 @@
                     "udid": "5982CE36-4526-580B-B4B9-ECC6782535BC"
                 }
             },
-            "os": {
-                "platform": "Mac"
-            },
             "related": {
                 "ip": [
                     "89.160.20.156"
@@ -339,7 +339,12 @@
                 "id": "21ED95A7-FF9D-52BD-A55B-36D54585083A",
                 "mac": [
                     "88-4D-7C-74-6F-22"
-                ]
+                ],
+                "os": {
+                    "full": "sonoma",
+                    "name": "macOS",
+                    "version": "14.7.2"
+                }
             },
             "jamf_pro": {
                 "inventory": {
@@ -429,11 +434,6 @@
                     },
                     "udid": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
                 }
-            },
-            "os": {
-                "full": "sonoma",
-                "name": "macOS",
-                "version": "14.7.2"
             }
         },
         {
@@ -444,7 +444,12 @@
                 "kind": "asset"
             },
             "host": {
-                "id": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
+                "id": "21ED95A7-FF9D-52BD-A55B-36D54585083A",
+                "os": {
+                    "full": "sonoma",
+                    "name": "macOS",
+                    "version": "14.7.0"
+                }
             },
             "jamf_pro": {
                 "inventory": {
@@ -471,11 +476,6 @@
                     },
                     "udid": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
                 }
-            },
-            "os": {
-                "full": "sonoma",
-                "name": "macOS",
-                "version": "14.7.0"
             }
         },
         {
@@ -486,7 +486,12 @@
                 "kind": "asset"
             },
             "host": {
-                "id": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
+                "id": "21ED95A7-FF9D-52BD-A55B-36D54585083A",
+                "os": {
+                    "full": "sonoma",
+                    "name": "macOS",
+                    "version": "14.0.0"
+                }
             },
             "jamf_pro": {
                 "inventory": {
@@ -513,11 +518,6 @@
                     },
                     "udid": "21ED95A7-FF9D-52BD-A55B-36D54585083A"
                 }
-            },
-            "os": {
-                "full": "sonoma",
-                "name": "macOS",
-                "version": "14.0.0"
             }
         }
     ]

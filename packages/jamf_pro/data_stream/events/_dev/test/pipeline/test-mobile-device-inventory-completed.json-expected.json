@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "67.8497"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -58,9 +61,6 @@
                         "webhook_event": "MobileDeviceInventoryCompleted"
                     }
                 }
-            },
-            "os": {
-                "version": "67.8497"
             },
             "related": {
                 "user": [

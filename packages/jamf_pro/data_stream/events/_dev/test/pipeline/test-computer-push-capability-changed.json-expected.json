@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "27.2234"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -60,9 +63,6 @@
                         "webhook_event": "ComputerPushCapabilityChanged"
                     }
                 }
-            },
-            "os": {
-                "version": "27.2234"
             },
             "related": {
                 "user": [

@@ -28,7 +28,10 @@
                 "ip": [
                     "89.160.20.156"
                 ],
-                "name": "2ECRW"
+                "name": "2ECRW",
+                "os": {
+                    "version": "17.1406"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -72,9 +75,6 @@
                         "webhook_event": "ComputerPatchPolicyCompleted"
                     }
                 }
-            },
-            "os": {
-                "version": "17.1406"
             },
             "related": {
                 "user": [

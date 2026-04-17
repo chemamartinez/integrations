@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "11.3415"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -58,9 +61,6 @@
                         "webhook_event": "MobileDevicePushSent"
                     }
                 }
-            },
-            "os": {
-                "version": "11.3415"
             },
             "related": {
                 "user": [

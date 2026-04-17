@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "57.4997"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -60,9 +63,6 @@
                         "webhook_event": "ComputerInventoryCompleted"
                     }
                 }
-            },
-            "os": {
-                "version": "57.4997"
             },
             "related": {
                 "user": [

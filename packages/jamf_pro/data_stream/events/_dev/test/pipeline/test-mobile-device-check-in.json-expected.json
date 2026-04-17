@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "04.8092"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -58,9 +61,6 @@
                         "webhook_event": "MobileDeviceCheckIn"
                     }
                 }
-            },
-            "os": {
-                "version": "04.8092"
             },
             "related": {
                 "user": [

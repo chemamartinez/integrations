@@ -132,7 +132,7 @@ processors:
     copy_from: jamf_pro.inventory.general.remote_management.managed
     ignore_empty_value: true
 - set:
-    field: os.name
+    field: host.os.name
     copy_from: jamf_pro.inventory.operating_system.name
     ignore_empty_value: true
 - script:
@@ -203,17 +203,20 @@ processors:
       ctx.jamf_pro.inventory.operating_system.version = normalize(ctx.jamf_pro.inventory.operating_system.version);
       String name = full_name(ctx.jamf_pro.inventory.operating_system.version);
       if (name != '') {
-        if (ctx.os == null) {
-          ctx.os = [:];
+        if (ctx.host == null) {
+          ctx.host = [:];
         }
-        ctx.os.full = name;
+        if (ctx.host.os == null) {
+          ctx.host.os = [:];
+        }
+        ctx.host.os.full = name;
       }
 - set:
-    field: os.version
+    field: host.os.version
     copy_from: jamf_pro.inventory.operating_system.version
     ignore_empty_value: true
 - set:
-    field: os.platform
+    field: host.os.platform
     copy_from: jamf_pro.inventory.general.platform
     ignore_empty_value: true
 - set:

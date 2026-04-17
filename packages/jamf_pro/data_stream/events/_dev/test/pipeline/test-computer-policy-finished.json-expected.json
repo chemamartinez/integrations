@@ -28,7 +28,10 @@
                 "ip": [
                     "89.160.20.156"
                 ],
-                "name": "GBTN2"
+                "name": "GBTN2",
+                "os": {
+                    "version": "37.5296"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -66,9 +69,6 @@
                         "webhook_event": "ComputerPolicyFinished"
                     }
                 }
-            },
-            "os": {
-                "version": "37.5296"
             },
             "related": {
                 "user": [

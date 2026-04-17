@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "92.5786"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -60,9 +63,6 @@
                         "webhook_event": "ComputerAdded"
                     }
                 }
-            },
-            "os": {
-                "version": "92.5786"
             },
             "related": {
                 "user": [

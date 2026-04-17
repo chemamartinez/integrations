@@ -26,7 +26,10 @@
                 },
                 "ip": [
                     "89.160.20.156"
-                ]
+                ],
+                "os": {
+                    "version": "85.9454"
+                }
             },
             "jamf_pro": {
                 "events": {
@@ -58,9 +61,6 @@
                         "webhook_event": "MobileDeviceEnrolled"
                     }
                 }
-            },
-            "os": {
-                "version": "85.9454"
             },
             "related": {
                 "user": [

@@ -124,12 +124,12 @@ processors:
 
 - set:
     if: ctx.jamf_pro.events.event.os_version != null
-    field: os.version
+    field: host.os.version
     copy_from: jamf_pro.events.event.os_version
 
 - set:
     if: ctx.jamf_pro.events.event.computer?.os_version != null
-    field: os.version
+    field: host.os.version
     copy_from: jamf_pro.events.event.computer.os_version
 
 
