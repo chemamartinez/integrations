@@ -377,6 +377,29 @@ processors:
         if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
         ctx.user.entity.relationships.put("owns", owns);
   - rename:
+      field: supervises
+      target_field: entityanalytics_okta.user.supervises
+      tag: rename_user_supervises
+      ignore_missing: true
+  - script:
+      lang: painless
+      tag: painless_set_user_entity_relationships_supervises
+      description: Build user.entity.relationships.supervises from supervised user list.
+      if: ctx.entityanalytics_okta?.user?.supervises instanceof List
+      source: |
+        def supervises = new ArrayList();
+        for (def supervised : ctx.entityanalytics_okta.user.supervises) {
+          def entry = new HashMap();
+          if (supervised?.user_id != null) entry.put("user_id", supervised.user_id);
+          if (supervised?.email != null) entry.put("email", supervised.email);
+          if (supervised?.username != null) entry.put("username", supervised.username);
+          supervises.add(entry);
+        }
+        if (ctx.user == null) ctx.user = new HashMap();
+        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user.entity.relationships.put("supervises", supervises);
+  - rename:
       field: okta.transitioningToStatus
       target_field: entityanalytics_okta.user.transitioning_to_status
       tag: user_transitioning_to_status

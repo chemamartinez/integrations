@@ -50,6 +50,9 @@ enrich_with:
 {{#if enrich_user_devices}}
   - devices
 {{/if}}
+{{#if enrich_user_supervises}}
+  - supervises
+{{/if}}
 {{#if proxy_url}}
 request.proxy_url: {{proxy_url}}
 {{/if}}

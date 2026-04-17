@@ -160,6 +160,19 @@
         - name: devices
           type: flattened
           description: Devices enrolled for the user.
+        - name: supervises
+          type: group
+          description: Users supervised by (direct reports of) this user.
+          fields:
+            - name: user_id
+              type: keyword
+              description: The supervised user's ID.
+            - name: email
+              type: keyword
+              description: The supervised user's email address.
+            - name: username
+              type: keyword
+              description: The supervised user's login name.
     - name: groups
       type: group
       fields:

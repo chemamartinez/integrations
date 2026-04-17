@@ -325,6 +325,34 @@
             "event": {
                 "action": "user-discovered"
             },
+            "supervises": [
+                {
+                    "user_id": "00ub0oNGTSWTBKOLGLNA",
+                    "email": "employee.one@example.com",
+                    "username": "employee.one@example.com"
+                },
+                {
+                    "user_id": "00ub0oNGTSWTBKOLGLNB",
+                    "email": "employee.two@example.com",
+                    "username": "employee.two@example.com"
+                }
+            ],
+            "okta_domain": "trial-xxxxxxx-admin.okta.com",
+            "user": {
+                "id": "00ub0oNGTSWTBKOLGLNE"
+            },
+            "input": {
+                "type": "entity-analytics"
+            },
+            "ecs": {
+                "version": "8.0.0"
+            }
+        },
+        {
+            "@timestamp": "2024-01-01T00:00:00.000Z",
+            "event": {
+                "action": "user-discovered"
+            },
             "devices": [
                 {
                     "id": "guo4a5uyerdpvAiJT0h7",
