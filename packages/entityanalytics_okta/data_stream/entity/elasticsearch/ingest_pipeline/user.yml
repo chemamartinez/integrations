@@ -301,6 +301,26 @@ processors:
                 target_field: _ingest._value.lastUpdated
                 ignore_failure: true
   - rename:
+      field: factors
+      target_field: entityanalytics_okta.user.factors
+      tag: rename_user_factors
+      ignore_missing: true
+  - script:
+      lang: painless
+      tag: painless_set_mfa_enabled
+      description: Set user.entity.attributes.mfa_enabled based on active MFA factors.
+      if: ctx.entityanalytics_okta?.user?.factors instanceof List
+      source: |
+        for (def f : ctx.entityanalytics_okta.user.factors) {
+          if ("ACTIVE".equals(f?.status)) {
+            if (ctx.user == null) ctx.user = new HashMap();
+            if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+            if (ctx.user.entity.attributes == null) ctx.user.entity.attributes = new HashMap();
+            ctx.user.entity.attributes.put("mfa_enabled", true);
+            return;
+          }
+        }
+  - rename:
       field: okta.transitioningToStatus
       target_field: entityanalytics_okta.user.transitioning_to_status
       tag: user_transitioning_to_status
@@ -731,6 +751,7 @@ processors:
         - entityanalytics_okta.user.profile.country_code
         - entityanalytics_okta.user.profile.second_email
         - entityanalytics_okta.user.profile.user_type
+        - entityanalytics_okta.user.factors
       tag: remove_duplicate_custom_fields
       ignore_missing: true
       if: ctx.tags == null || !(ctx.tags.contains('preserve_duplicate_custom_fields'))

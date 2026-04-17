@@ -105,6 +105,39 @@ rules:
               }
           ]
           `}}
+  - path: /api/v1/users/00ub0oNGTSWTBKOLGLNR/factors
+    methods: ["GET"]
+    responses:
+      - status_code: 200
+        body: |
+          {{ minify_json `
+          [
+              {
+                  "id": "ufs2bysphxKODSZKWVCT",
+                  "factorType": "question",
+                  "provider": "OKTA",
+                  "vendorName": "OKTA",
+                  "status": "ACTIVE",
+                  "created": "2014-04-15T18:10:06.000Z",
+                  "lastUpdated": "2014-04-15T18:10:06.000Z",
+                  "profile": {
+                      "question": "favorite_art_piece",
+                      "questionText": "What is your favorite piece of art?"
+                  }
+              },
+              {
+                  "id": "sms2gt8gzgEBPUWBIFHN",
+                  "factorType": "sms",
+                  "provider": "OKTA",
+                  "status": "ACTIVE",
+                  "created": "2014-06-27T20:27:26.000Z",
+                  "lastUpdated": "2014-06-27T20:27:26.000Z",
+                  "profile": {
+                      "phoneNumber": "+1-555-415-1337"
+                  }
+              }
+          ]
+          `}}
   - path: /api/v1/devices
     methods: ["GET"]
     responses:

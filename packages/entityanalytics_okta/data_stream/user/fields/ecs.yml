@@ -120,3 +120,8 @@
                   type: keyword
                 - name: username
                   type: keyword
+        - name: attributes
+          type: group
+          fields:
+            - name: mfa_enabled
+              type: boolean

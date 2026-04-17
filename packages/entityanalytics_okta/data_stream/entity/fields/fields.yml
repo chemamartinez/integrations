@@ -210,6 +210,34 @@
         - name: type
           type: flattened
           description: user type that determines the schema for the user's profile.
+        - name: factors
+          type: group
+          description: MFA factors enrolled for the user.
+          fields:
+            - name: id
+              type: keyword
+              description: The ID for the factor.
+            - name: factorType
+              type: keyword
+              description: Type of factor.
+            - name: provider
+              type: keyword
+              description: Factor provider.
+            - name: vendorName
+              type: keyword
+              description: Factor vendor name.
+            - name: status
+              type: keyword
+              description: Factor status.
+            - name: created
+              type: date
+              description: When the factor was created.
+            - name: lastUpdated
+              type: date
+              description: When the factor was last updated.
+            - name: profile
+              type: flattened
+              description: Factor profile details.
     - name: groups
       type: group
       fields:

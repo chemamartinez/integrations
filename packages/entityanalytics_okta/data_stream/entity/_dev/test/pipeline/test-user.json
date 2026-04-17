@@ -181,6 +181,43 @@
         {
             "@timestamp": "2023-06-13T07:12:17.341Z",
             "okta": {
+                "id": "00ub0oNGTSWTBKOLGLNA",
+                "status": "ACTIVE",
+                "created": "2021-01-01T00:00:00.000Z",
+                "activated": "2021-01-01T00:00:01.000Z",
+                "statusChanged": "2021-01-01T00:00:01.000Z",
+                "lastLogin": "2023-06-01T10:00:00.000Z",
+                "lastUpdated": "2023-06-01T10:00:00.000Z",
+                "profile": {
+                    "login": "bob.jones@example.com",
+                    "firstName": "Bob",
+                    "lastName": "Jones",
+                    "email": "bob.jones@example.com"
+                },
+                "credentials": {
+                    "provider": {"type": "OKTA", "name": "OKTA"},
+                    "recovery_question": {}
+                }
+            },
+            "factors": [
+                {
+                    "id": "ufs2bysphxKODSZKWVCT",
+                    "factorType": "token:software:totp",
+                    "provider": "OKTA",
+                    "vendorName": "OKTA",
+                    "status": "ACTIVE",
+                    "created": "2021-01-05T10:00:00.000Z",
+                    "lastUpdated": "2021-01-05T10:00:00.000Z"
+                }
+            ],
+            "okta_domain": "trial-xxxxxxx-admin.okta.com",
+            "user": {"id": "00ub0oNGTSWTBKOLGLNA"},
+            "input": {"type": "entity-analytics"},
+            "ecs": {"version": "8.0.0"}
+        },
+        {
+            "@timestamp": "2023-06-13T07:12:17.341Z",
+            "okta": {
                 "id": "00ub0oNGTSWTBKOLGLNZ",
                 "status": "ACTIVE",
                 "created": "2020-01-10T12:00:00.000Z",
