@@ -294,6 +294,7 @@ This is the `Device` dataset.
 | entityanalytics_okta.device.users | Users associated with the device. | flattened |
 | event.dataset | Event dataset. | constant_keyword |
 | event.module | Event module. | constant_keyword |
+| host.entity.attributes.managed |  | boolean |
 | input.type | Type of filebeat input. | keyword |
 | labels.identity_source |  | keyword |
 | log.offset | Log offset. | long |
@@ -357,6 +358,10 @@ This is the `User` dataset.
 | entityanalytics_okta.roles.id | The ID for the role. | keyword |
 | entityanalytics_okta.roles.label | Name of the role. | keyword |
 | entityanalytics_okta.roles.last_updated | When the role was last updated. | date |
+| entityanalytics_okta.roles.permissions.created | When the permission was created. | date |
+| entityanalytics_okta.roles.permissions.label | Permission label. | keyword |
+| entityanalytics_okta.roles.permissions.last_updated | When the permission was last updated. | date |
+| entityanalytics_okta.roles.role | The role definition ID for custom roles. | keyword |
 | entityanalytics_okta.roles.status | Role status. | keyword |
 | entityanalytics_okta.roles.type | Okta role type. | keyword |
 | entityanalytics_okta.user._embedded | embedded resources related to the user. | flattened |
@@ -366,6 +371,7 @@ This is the `User` dataset.
 | entityanalytics_okta.user.credentials.provider.name |  | keyword |
 | entityanalytics_okta.user.credentials.provider.type |  | keyword |
 | entityanalytics_okta.user.credentials.recovery_question.is_set |  | boolean |
+| entityanalytics_okta.user.devices | Devices enrolled for the user. | flattened |
 | entityanalytics_okta.user.id | unique key for user. | keyword |
 | entityanalytics_okta.user.last_login | timestamp of last login. | date |
 | entityanalytics_okta.user.last_updated | timestamp when user was last updated. | date |
@@ -404,6 +410,9 @@ This is the `User` dataset.
 | entityanalytics_okta.user.profile.zip_code | ZIP code or postal code component of user's address (postalCode). | keyword |
 | entityanalytics_okta.user.status | current status of user. | keyword |
 | entityanalytics_okta.user.status_changed | timestamp when status last changed. | date |
+| entityanalytics_okta.user.supervises.email | The supervised user's email address. | keyword |
+| entityanalytics_okta.user.supervises.user_id | The supervised user's ID. | keyword |
+| entityanalytics_okta.user.supervises.username | The supervised user's login name. | keyword |
 | entityanalytics_okta.user.transitioning_to_status | target status of an in-progress asynchronous status transition. | keyword |
 | entityanalytics_okta.user.type | user type that determines the schema for the user's profile. | flattened |
 | event.dataset | Event dataset. | constant_keyword |
@@ -420,6 +429,16 @@ This is the `User` dataset.
 | user.account.status.password_expired |  | boolean |
 | user.account.status.recovery |  | boolean |
 | user.account.status.suspended |  | boolean |
+| user.entity.attributes.mfa_enabled |  | boolean |
+| user.entity.attributes.permissions |  | keyword |
+| user.entity.lifecycle.last_activity |  | date |
+| user.entity.relationships.administered_by.user_id |  | keyword |
+| user.entity.relationships.administered_by.username |  | keyword |
+| user.entity.relationships.owns.host_id |  | keyword |
+| user.entity.relationships.owns.hostname |  | keyword |
+| user.entity.relationships.supervises.email |  | keyword |
+| user.entity.relationships.supervises.user_id |  | keyword |
+| user.entity.relationships.supervises.username |  | keyword |
 | user.geo.city_name |  | keyword |
 | user.geo.country_iso_code |  | keyword |
 | user.geo.name |  | keyword |
