@@ -263,9 +263,14 @@ processors:
           def dcParts = new ArrayList();
           boolean cnFound = false;
           while (start < dn.length()) {
-            int end = dn.indexOf(',', start);
-            if (end == -1) end = dn.length();
-            def part = dn.substring(start, end).trim();
+            int end = start;
+            while (true) {
+              end = dn.indexOf(',', end);
+              if (end == -1) { end = dn.length(); break; }
+              if (end > 0 && dn.charAt(end - 1) == (char)'\\') { end++; continue; }
+              break;
+            }
+            def part = dn.substring(start, end).replace('\\,', ',').trim();
             if (!cnFound && part.length() > 3 && part.substring(0, 3).equalsIgnoreCase('CN=')) {
               result['name'] = part.substring(3);
               cnFound = true;
