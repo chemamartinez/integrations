@@ -35,6 +35,17 @@ streams:
         required: true
         show_user: true
         default: all
+      - name: user_app_role_assignments
+        type: bool
+        title: User App Role Assignments
+        description: >-
+          Enable enrichment of user records with their app role assignments by
+          expanding the appRoleAssignments property. Populates
+          user.entity.attributes.permissions.
+        multi: false
+        required: false
+        show_user: true
+        default: false
       - name: user_sign_in_activity
         type: bool
         title: User Sign-in Activity

@@ -37,6 +37,12 @@ select.users:
 {{#if user_manager}}
 expand.users:
   - manager
+{{#if user_app_role_assignments}}
+  - appRoleAssignments
+{{/if}}
+{{else if user_app_role_assignments}}
+expand.users:
+  - appRoleAssignments
 {{/if}}
 {{#if intune_managed_devices}}
 select.devices:

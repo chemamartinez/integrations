@@ -182,6 +182,33 @@
         - name: mail
           type: keyword
           description: The SMTP address for the user.
+        - name: app_role_assignments
+          type: group
+          fields:
+            - name: app_role_display_name
+              type: keyword
+              description: The display name of the app role granted to the user.
+            - name: app_role_id
+              type: keyword
+              description: The id of the app role assigned to the principal.
+            - name: created_date_time
+              type: date
+              description: The time when the app role assignment was created.
+            - name: id
+              type: keyword
+              description: A unique identifier for the appRoleAssignment key.
+            - name: principal_display_name
+              type: keyword
+              description: The display name of the user that was granted the app role assignment.
+            - name: principal_id
+              type: keyword
+              description: The unique identifier of the user that was granted the app role.
+            - name: resource_display_name
+              type: keyword
+              description: The display name of the resource application to which the assignment was made.
+            - name: resource_id
+              type: keyword
+              description: The unique identifier of the resource application to which the assignment was made.
         - name: sign_in_activity
           type: group
           fields:

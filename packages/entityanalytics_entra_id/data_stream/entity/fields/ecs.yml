@@ -115,6 +115,11 @@
     - name: entity
       type: group
       fields:
+        - name: attributes
+          type: group
+          fields:
+            - name: permissions
+              type: keyword
         - name: lifecycle
           type: group
           fields:

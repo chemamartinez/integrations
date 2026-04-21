@@ -119,6 +119,28 @@
                     "lastSignInDateTime": "2024-03-01T09:00:00Z",
                     "lastNonInteractiveSignInDateTime": "2024-02-28T22:00:00Z"
                 },
+                "appRoleAssignments": [
+                    {
+                        "id": "aabb1122-3344-5566-7788-99aabbccddee",
+                        "appRoleId": "df021288-bdef-4463-88db-98f22de89867",
+                        "appRoleDisplayName": "User.Read.All",
+                        "principalDisplayName": "First99001 Last99002",
+                        "principalId": "dd334455-6677-8899-aabb-ccddeeff0011",
+                        "resourceDisplayName": "Microsoft Graph",
+                        "resourceId": "7f6a6c97-1234-5678-abcd-ef1234567890",
+                        "createdDateTime": "2023-01-10T12:00:00Z"
+                    },
+                    {
+                        "id": "bbcc2233-4455-6677-8899-aabbccddeeff",
+                        "appRoleId": "9e3f4f27-be10-4b29-a1ec-8b4b71e3f9b9",
+                        "appRoleDisplayName": "Mail.Read",
+                        "principalDisplayName": "First99001 Last99002",
+                        "principalId": "dd334455-6677-8899-aabb-ccddeeff0011",
+                        "resourceDisplayName": "Microsoft Graph",
+                        "resourceId": "7f6a6c97-1234-5678-abcd-ef1234567890",
+                        "createdDateTime": "2023-01-10T12:00:00Z"
+                    }
+                ],
                 "manager": {
                     "id": "cc112233-4455-6677-8899-aabbccddeeff",
                     "displayName": "Manager One",

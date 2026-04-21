@@ -216,6 +216,16 @@ processors:
       copy_from: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
       tag: set_user_entity_lifecycle_last_activity
       ignore_empty_value: true
+  - foreach:
+      field: entityanalytics_entra_id.user.app_role_assignments
+      if: ctx.entityanalytics_entra_id?.user?.app_role_assignments instanceof List
+      ignore_failure: true
+      processor:
+        append:
+          field: user.entity.attributes.permissions
+          value: "{{{_ingest._value.app_role_display_name}}}"
+          tag: append_app_role_display_name_to_permissions
+          allow_duplicates: false
   - set:
       field: user.entity.relationships.administered_by
       tag: set_user_entity_administered_by
