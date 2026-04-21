@@ -216,6 +216,23 @@ processors:
       copy_from: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
       tag: set_user_entity_lifecycle_last_activity
       ignore_empty_value: true
+  - convert:
+      field: entityanalytics_entra_id.user.mfa.is_mfa_registered
+      tag: convert_isMfaRegistered_to_boolean
+      type: boolean
+      ignore_missing: true
+      on_failure:
+        - remove:
+            field: entityanalytics_entra_id.user.mfa.is_mfa_registered
+            ignore_missing: true
+        - append:
+            field: error.message
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.on_failure_pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - set:
+      field: user.entity.attributes.mfa_enabled
+      copy_from: entityanalytics_entra_id.user.mfa.is_mfa_registered
+      tag: set_user_entity_attributes_mfa_enabled
+      ignore_empty_value: true
   - foreach:
       field: entityanalytics_entra_id.user.direct_reports
       if: ctx.entityanalytics_entra_id?.user?.direct_reports instanceof List

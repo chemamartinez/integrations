@@ -118,6 +118,8 @@
         - name: attributes
           type: group
           fields:
+            - name: mfa_enabled
+              type: boolean
             - name: permissions
               type: keyword
         - name: lifecycle

@@ -35,6 +35,17 @@ streams:
         required: true
         show_user: true
         default: all
+      - name: enrich_with_mfa
+        type: bool
+        title: MFA Enrichment
+        description: >-
+          Enable enrichment of user records with MFA registration details. Requires
+          the AuditLog.Read.All application permission in Azure in addition to the
+          existing permissions. Populates user.entity.attributes.mfa_enabled.
+        multi: false
+        required: false
+        show_user: true
+        default: false
       - name: user_direct_reports
         type: bool
         title: User Direct Reports

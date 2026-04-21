@@ -115,6 +115,19 @@
                 "surname": "Last99002",
                 "jobTitle": "Engineer",
                 "accountEnabled": true,
+                "mfa": {
+                    "isMfaCapable": true,
+                    "isMfaRegistered": true,
+                    "isPasswordlessCapable": false,
+                    "isSsprCapable": false,
+                    "isSsprEnabled": false,
+                    "isSsprRegistered": false,
+                    "isSystemPreferredAuthenticationMethodEnabled": false,
+                    "methodsRegistered": ["microsoftAuthenticatorPush", "softwareOneTimePasscode"],
+                    "systemPreferredAuthenticationMethods": [],
+                    "userPreferredMethodForSecondaryAuthentication": "push",
+                    "userType": "member"
+                },
                 "signInActivity": {
                     "lastSignInDateTime": "2024-03-01T09:00:00Z",
                     "lastNonInteractiveSignInDateTime": "2024-02-28T22:00:00Z"
