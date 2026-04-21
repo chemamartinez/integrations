@@ -322,6 +322,10 @@ An example event for `entity` looks as following:
 | entityanalytics_entra_id.user.id | The unique identifier for the user. Should be treated as an opaque identifier. Inherited from directoryObject. | keyword |
 | entityanalytics_entra_id.user.job_title | The user's job title. Maximum length is 128 characters. | keyword |
 | entityanalytics_entra_id.user.mail | The SMTP address for the user. | keyword |
+| entityanalytics_entra_id.user.manager.display_name | The display name of the manager. | keyword |
+| entityanalytics_entra_id.user.manager.id | The unique identifier for the manager. | keyword |
+| entityanalytics_entra_id.user.manager.mail | The SMTP address of the manager. | keyword |
+| entityanalytics_entra_id.user.manager.user_principal_name | The user principal name of the manager. | keyword |
 | entityanalytics_entra_id.user.mobile_phone | The primary cellular telephone number for the user. Read-only for users synced from on-premises directory. Maximum length is 64 characters. | keyword |
 | entityanalytics_entra_id.user.office_location | The office location in the user's place of business. | keyword |
 | entityanalytics_entra_id.user.preferred_language | The preferred language for the user. Should follow ISO 639-1 Code; for example en-US. | keyword |
@@ -337,6 +341,9 @@ An example event for `entity` looks as following:
 | log.flags | Flags for the log file. | keyword |
 | log.offset | Offset of the entry in the log file. | long |
 | user.enabled |  | boolean |
+| user.entity.relationships.administered_by.email |  | keyword |
+| user.entity.relationships.administered_by.user_id |  | keyword |
+| user.entity.relationships.administered_by.username |  | keyword |
 | user.first_name |  | keyword |
 | user.group.id |  | keyword |
 | user.group.name |  | keyword |

@@ -59,6 +59,7 @@ processors:
         - entityanalytics_entra_id.user.job_title
         - entityanalytics_entra_id.user.office_location
         - entityanalytics_entra_id.user.id
+        - entityanalytics_entra_id.user.manager
         - entityanalytics_entra_id.device.version
         - entityanalytics_entra_id.device.display_name
         - entityanalytics_entra_id.device.is_managed

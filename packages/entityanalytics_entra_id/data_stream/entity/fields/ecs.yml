@@ -107,6 +107,21 @@
 - name: user
   type: group
   fields:
+    - name: entity
+      type: group
+      fields:
+        - name: relationships
+          type: group
+          fields:
+            - name: administered_by
+              type: group
+              fields:
+                - name: email
+                  type: keyword
+                - name: user_id
+                  type: keyword
+                - name: username
+                  type: keyword
     - name: enabled
       type: boolean
     - name: first_name

@@ -197,6 +197,14 @@ processors:
       copy_from: user.group
       tag: set_asset_group
       ignore_empty_value: true
+  - set:
+      field: user.entity.relationships.administered_by
+      tag: set_user_entity_administered_by
+      if: ctx.entityanalytics_entra_id?.user?.manager?.id != null
+      value:
+        - user_id: "{{{entityanalytics_entra_id.user.manager.id}}}"
+          username: "{{{entityanalytics_entra_id.user.manager.user_principal_name}}}"
+          email: "{{{entityanalytics_entra_id.user.manager.mail}}}"
 on_failure:
   - append:
       field: error.message

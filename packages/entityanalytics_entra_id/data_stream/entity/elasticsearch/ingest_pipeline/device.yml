@@ -533,6 +533,19 @@ processors:
       copy_from: device.registered_owners
       tag: set_entityanalytics_entra_id_device_registered_owners
       ignore_empty_value: true
+  - foreach:
+      field: device.registered_owners
+      if: ctx.device?.registered_owners instanceof List
+      ignore_failure: true
+      processor:
+        append:
+          field: user.entity.relationships.administered_by
+          value:
+            user_id: "{{{_ingest._value.id}}}"
+            username: "{{{_ingest._value.user_principal_name}}}"
+            email: "{{{_ingest._value.mail}}}"
+          tag: append_device_registered_owners_to_administered_by
+          allow_duplicates: false
 on_failure:
   - append:
       field: error.message

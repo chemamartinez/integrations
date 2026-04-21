@@ -19,6 +19,10 @@ login_scopes:
 {{#if custom_options}}
 {{custom_options}}
 {{/if}}
+{{#if user_manager}}
+expand.users:
+  - manager
+{{/if}}
 {{#if intune_managed_devices}}
 select.devices:
   - accountEnabled
