@@ -42,6 +42,7 @@
                 "displayName": "DESKTOP-LETW452G",
                 "operatingSystem": "Windows",
                 "operatingSystemVersion": "10.0.19043.1337",
+                "isManaged": true,
                 "alternativeSecurityIds": [
                     {
                         "type": 2,

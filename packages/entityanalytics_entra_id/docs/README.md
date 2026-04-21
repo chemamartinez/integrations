@@ -331,6 +331,7 @@ An example event for `entity` looks as following:
 | event.message | Log message optimized for viewing in a log viewer. | text |
 | event.module | Name of the module this data is coming from. | constant_keyword |
 | event.provider | The event kind. | constant_keyword |
+| host.entity.attributes.managed |  | boolean |
 | input.type | Type of Filebeat input. | keyword |
 | labels.identity_source |  | keyword |
 | log.flags | Flags for the log file. | keyword |

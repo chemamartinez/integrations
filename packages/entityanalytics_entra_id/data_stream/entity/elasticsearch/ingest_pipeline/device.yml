@@ -225,6 +225,11 @@ processors:
       tag: set_asset_is_managed
       ignore_empty_value: true
   - set:
+      field: host.entity.attributes.managed
+      copy_from: entityanalytics_entra_id.device.is_managed
+      tag: set_host_entity_attributes_managed
+      ignore_empty_value: true
+  - set:
       field: asset.vendor
       copy_from: entityanalytics_entra_id.device.manufacturer
       tag: set_asset_vendor
