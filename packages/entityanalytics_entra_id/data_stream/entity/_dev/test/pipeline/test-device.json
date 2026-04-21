@@ -43,6 +43,7 @@
                 "operatingSystem": "Windows",
                 "operatingSystemVersion": "10.0.19043.1337",
                 "isManaged": true,
+                "approximateLastSignInDateTime": "2024-01-15T08:30:00Z",
                 "alternativeSecurityIds": [
                     {
                         "type": 2,

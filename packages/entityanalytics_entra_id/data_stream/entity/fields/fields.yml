@@ -182,6 +182,15 @@
         - name: mail
           type: keyword
           description: The SMTP address for the user.
+        - name: sign_in_activity
+          type: group
+          fields:
+            - name: last_sign_in_date_time
+              type: date
+              description: The last sign-in date and time.
+            - name: last_non_interactive_sign_in_date_time
+              type: date
+              description: The last non-interactive sign-in date and time.
         - name: manager
           type: group
           fields:

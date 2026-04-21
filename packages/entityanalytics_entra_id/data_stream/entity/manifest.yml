@@ -35,6 +35,16 @@ streams:
         required: true
         show_user: true
         default: all
+      - name: user_sign_in_activity
+        type: bool
+        title: User Sign-in Activity
+        description: >-
+          Enable collection of user sign-in activity by including signInActivity
+          in the user selection. Populates user.entity.lifecycle.last_activity.
+        multi: false
+        required: false
+        show_user: true
+        default: false
       - name: user_manager
         type: bool
         title: User Manager Relationship

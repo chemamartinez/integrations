@@ -19,6 +19,21 @@ login_scopes:
 {{#if custom_options}}
 {{custom_options}}
 {{/if}}
+{{#if user_sign_in_activity}}
+select.users:
+  - userPrincipalName
+  - mail
+  - displayName
+  - givenName
+  - surname
+  - jobTitle
+  - officeLocation
+  - mobilePhone
+  - businessPhones
+  - accountEnabled
+  - department
+  - signInActivity
+{{/if}}
 {{#if user_manager}}
 expand.users:
   - manager

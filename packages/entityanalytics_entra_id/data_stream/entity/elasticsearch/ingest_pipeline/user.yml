@@ -197,6 +197,25 @@ processors:
       copy_from: user.group
       tag: set_asset_group
       ignore_empty_value: true
+  - date:
+      field: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
+      tag: date_sign_in_activity_last_sign_in_date_time
+      target_field: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
+      formats:
+        - ISO8601
+      if: ctx.entityanalytics_entra_id?.user?.sign_in_activity?.last_sign_in_date_time != null && ctx.entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time != ''
+      on_failure:
+        - remove:
+            field: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
+            ignore_missing: true
+        - append:
+            field: error.message
+            value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.on_failure_pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - set:
+      field: user.entity.lifecycle.last_activity
+      copy_from: entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time
+      tag: set_user_entity_lifecycle_last_activity
+      ignore_empty_value: true
   - set:
       field: user.entity.relationships.administered_by
       tag: set_user_entity_administered_by

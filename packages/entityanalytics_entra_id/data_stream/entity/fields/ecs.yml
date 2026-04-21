@@ -11,6 +11,11 @@
           fields:
             - name: managed
               type: boolean
+        - name: lifecycle
+          type: group
+          fields:
+            - name: last_activity
+              type: date
 - name: asset
   type: group
   fields:
@@ -110,6 +115,11 @@
     - name: entity
       type: group
       fields:
+        - name: lifecycle
+          type: group
+          fields:
+            - name: last_activity
+              type: date
         - name: relationships
           type: group
           fields:

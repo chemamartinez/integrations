@@ -329,6 +329,8 @@ An example event for `entity` looks as following:
 | entityanalytics_entra_id.user.mobile_phone | The primary cellular telephone number for the user. Read-only for users synced from on-premises directory. Maximum length is 64 characters. | keyword |
 | entityanalytics_entra_id.user.office_location | The office location in the user's place of business. | keyword |
 | entityanalytics_entra_id.user.preferred_language | The preferred language for the user. Should follow ISO 639-1 Code; for example en-US. | keyword |
+| entityanalytics_entra_id.user.sign_in_activity.last_non_interactive_sign_in_date_time | The last non-interactive sign-in date and time. | date |
+| entityanalytics_entra_id.user.sign_in_activity.last_sign_in_date_time | The last sign-in date and time. | date |
 | entityanalytics_entra_id.user.surname | The user's surname (family name or last name). Maximum length is 64 characters. | keyword |
 | entityanalytics_entra_id.user.user_principal_name | The user principal name (UPN) of the user. The UPN is an Internet-style login name for the user based on the Internet standard RFC 822. By convention, this should map to the user's email name. The general format is alias@domain, where domain must be present in the tenant's collection of verified domains. | keyword |
 | event.dataset | Name of the dataset. | constant_keyword |
@@ -336,11 +338,13 @@ An example event for `entity` looks as following:
 | event.module | Name of the module this data is coming from. | constant_keyword |
 | event.provider | The event kind. | constant_keyword |
 | host.entity.attributes.managed |  | boolean |
+| host.entity.lifecycle.last_activity |  | date |
 | input.type | Type of Filebeat input. | keyword |
 | labels.identity_source |  | keyword |
 | log.flags | Flags for the log file. | keyword |
 | log.offset | Offset of the entry in the log file. | long |
 | user.enabled |  | boolean |
+| user.entity.lifecycle.last_activity |  | date |
 | user.entity.relationships.administered_by.email |  | keyword |
 | user.entity.relationships.administered_by.user_id |  | keyword |
 | user.entity.relationships.administered_by.username |  | keyword |

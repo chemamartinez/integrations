@@ -132,6 +132,11 @@ processors:
         - append:
             field: error.message
             value: 'Processor {{{_ingest.on_failure_processor_type}}} with tag {{{_ingest.on_failure_processor_tag}}} in pipeline {{{_ingest.on_failure_pipeline}}} failed with message: {{{_ingest.on_failure_message}}}'
+  - set:
+      field: host.entity.lifecycle.last_activity
+      copy_from: entityanalytics_entra_id.device.approximate_last_sign_in_date_time
+      tag: set_host_entity_lifecycle_last_activity
+      ignore_empty_value: true
   - date:
       field: entityanalytics_entra_id.device.compliance_expiration_date_time
       tag: date_compliance_expiration_date_time
