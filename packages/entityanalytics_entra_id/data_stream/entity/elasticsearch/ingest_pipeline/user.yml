@@ -217,6 +217,19 @@ processors:
       tag: set_user_entity_lifecycle_last_activity
       ignore_empty_value: true
   - foreach:
+      field: entityanalytics_entra_id.user.direct_reports
+      if: ctx.entityanalytics_entra_id?.user?.direct_reports instanceof List
+      ignore_failure: true
+      processor:
+        append:
+          field: user.entity.relationships.supervises
+          value:
+            user_id: "{{{_ingest._value.id}}}"
+            username: "{{{_ingest._value.user_principal_name}}}"
+            email: "{{{_ingest._value.mail}}}"
+          tag: append_direct_reports_to_supervises
+          allow_duplicates: false
+  - foreach:
       field: entityanalytics_entra_id.user.app_role_assignments
       if: ctx.entityanalytics_entra_id?.user?.app_role_assignments instanceof List
       ignore_failure: true

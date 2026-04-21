@@ -35,6 +35,17 @@ streams:
         required: true
         show_user: true
         default: all
+      - name: user_direct_reports
+        type: bool
+        title: User Direct Reports
+        description: >-
+          Enable enrichment of user records with their direct reports by expanding
+          the directReports property. Populates user.entity.relationships.supervises.
+          Note: Microsoft Graph limits this expansion to 20 objects per query.
+        multi: false
+        required: false
+        show_user: true
+        default: false
       - name: user_app_role_assignments
         type: bool
         title: User App Role Assignments

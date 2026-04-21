@@ -137,6 +137,15 @@
                   type: keyword
                 - name: username
                   type: keyword
+            - name: supervises
+              type: group
+              fields:
+                - name: email
+                  type: keyword
+                - name: user_id
+                  type: keyword
+                - name: username
+                  type: keyword
     - name: enabled
       type: boolean
     - name: first_name

@@ -27,6 +27,14 @@ rules:
           {"@odata.deltaLink":"http://localhost:8080/v1.0/users/delta?$skiptoken=1","value":[{"id":"aa534e49-edfd-4541-8256-8bbf34f122b4","userPrincipalName":"First21480.Last11836@example.com","mail":"First21480_Last11836@example.com","displayName":"First21480 Last11836","givenName":"First21480","surname":"Last11836","jobTitle":"Manager","officeLocation":"608 St N, Somewhere, ABC, XYZ","mobilePhone":"231-482-2649","businessPhones":["55-692-8856","552-265-6614"],"accountEnabled":true,"signInActivity":{"lastSignInDateTime":"2024-03-01T09:00:00Z","lastNonInteractiveSignInDateTime":"2024-02-28T22:00:00Z"}},{"id":"feb6a386-612a-4ed1-9b13-2adc73074a19","userPrincipalName":"First45375.Last58638@example.com","mail":"First45375_Last58638@example.com","displayName":"First45375 Last58638","givenName":"First45375","surname":"Last58638","jobTitle":"Tech Writer","officeLocation":"682 St N, Somewhere, ABC, XYZ","mobilePhone":"385-169-3671","businessPhones":null,"accountEnabled":false}]}
   - path: /v1.0/users/delta
     query:
+      $expand: directReports
+    methods: ["GET"]
+    responses:
+      - status_code: 200
+        body: |-
+          {"@odata.deltaLink":"http://localhost:8080/v1.0/users/delta?$skiptoken=1","value":[{"id":"aa534e49-edfd-4541-8256-8bbf34f122b4","userPrincipalName":"First21480.Last11836@example.com","mail":"First21480_Last11836@example.com","displayName":"First21480 Last11836","givenName":"First21480","surname":"Last11836","jobTitle":"Manager","officeLocation":"608 St N, Somewhere, ABC, XYZ","mobilePhone":"231-482-2649","businessPhones":["55-692-8856","552-265-6614"],"accountEnabled":true,"directReports":[{"id":"ee556677-8899-aabb-ccdd-eeff00112233","displayName":"Report One","userPrincipalName":"report.one@example.com","mail":"report.one@example.com"},{"id":"ff667788-99aa-bbcc-ddee-ff0011223344","displayName":"Report Two","userPrincipalName":"report.two@example.com","mail":"report.two@example.com"}]}]}
+  - path: /v1.0/users/delta
+    query:
       $expand: appRoleAssignments
     methods: ["GET"]
     responses:

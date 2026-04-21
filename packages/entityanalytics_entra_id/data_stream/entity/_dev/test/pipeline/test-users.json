@@ -119,6 +119,20 @@
                     "lastSignInDateTime": "2024-03-01T09:00:00Z",
                     "lastNonInteractiveSignInDateTime": "2024-02-28T22:00:00Z"
                 },
+                "directReports": [
+                    {
+                        "id": "ee556677-8899-aabb-ccdd-eeff00112233",
+                        "displayName": "Report One",
+                        "userPrincipalName": "report.one@example.com",
+                        "mail": "report.one@example.com"
+                    },
+                    {
+                        "id": "ff667788-99aa-bbcc-ddee-ff0011223344",
+                        "displayName": "Report Two",
+                        "userPrincipalName": "report.two@example.com",
+                        "mail": "report.two@example.com"
+                    }
+                ],
                 "appRoleAssignments": [
                     {
                         "id": "aabb1122-3344-5566-7788-99aabbccddee",

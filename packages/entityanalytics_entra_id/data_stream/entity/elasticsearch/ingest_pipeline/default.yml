@@ -60,6 +60,7 @@ processors:
         - entityanalytics_entra_id.user.office_location
         - entityanalytics_entra_id.user.id
         - entityanalytics_entra_id.user.app_role_assignments
+        - entityanalytics_entra_id.user.direct_reports
         - entityanalytics_entra_id.user.sign_in_activity
         - entityanalytics_entra_id.user.manager
         - entityanalytics_entra_id.device.approximate_last_sign_in_date_time
