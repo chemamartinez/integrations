@@ -3,7 +3,7 @@
   changes:
     - description: Add support for ECS entity fields.
       type: enhancement
-      link: https://github.com/elastic/integrations/pull/99999
+      link: https://github.com/elastic/integrations/pull/18621
 - version: "1.9.1"
   changes:
     - description: Fix request tracer path in input configuration by including the input name in the path.
