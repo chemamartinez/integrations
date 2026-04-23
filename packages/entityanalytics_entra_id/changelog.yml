@@ -2,7 +2,7 @@
 - version: "1.10.0"
   changes:
     - description: Add support for ECS entity fields.
-      type: bugfix
+      type: enhancement
       link: https://github.com/elastic/integrations/pull/99999
 - version: "1.9.1"
   changes:
