@@ -367,9 +367,11 @@ processors:
         def owns = new ArrayList();
         for (def device : ctx.entityanalytics_okta.user.devices) {
           def entry = new HashMap();
-          entry.put("host_id", device?.id);
+          def hostObj = new HashMap();
+          if (device?.id != null) hostObj.put("id", device.id);
           def displayName = device?.profile?.displayName;
-          if (displayName != null) entry.put("hostname", displayName);
+          if (displayName != null) hostObj.put("name", displayName);
+          if (!hostObj.isEmpty()) entry.put("host", hostObj);
           owns.add(entry);
         }
         if (ctx.user == null) ctx.user = new HashMap();
@@ -388,13 +390,28 @@ processors:
       if: ctx.entityanalytics_okta?.user?.supervises instanceof List
       source: |
         def supervises = new ArrayList();
+        def renamedSupervises = new ArrayList();
         for (def supervised : ctx.entityanalytics_okta.user.supervises) {
           def entry = new HashMap();
-          if (supervised?.user_id != null) entry.put("user_id", supervised.user_id);
-          if (supervised?.email != null) entry.put("email", supervised.email);
-          if (supervised?.username != null) entry.put("username", supervised.username);
+          def raw = new HashMap();
+          def userObj = new HashMap();
+          if (supervised?.user_id != null) {
+            userObj.put("id", supervised.user_id);
+            raw.put("user.id", supervised.user_id);
+          }
+          if (supervised?.username != null) {
+            userObj.put("name", supervised.username);
+            raw.put("user.name", supervised.username);
+          }
+          if (supervised?.email != null) {
+            entry.put("email", supervised.email);
+            raw.put("email", supervised.email);
+          }
+          if (!userObj.isEmpty()) entry.put("user", userObj);
           supervises.add(entry);
+          renamedSupervises.add(raw);
         }
+        ctx.entityanalytics_okta.user.supervises = renamedSupervises;
         if (ctx.user == null) ctx.user = new HashMap();
         if (ctx.user.entity == null) ctx.user.entity = new HashMap();
         if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
@@ -735,7 +752,7 @@ processors:
       tag: set_user_profile_manager
       ignore_empty_value: true
   - set:
-      field: user.entity.relationships.administered_by.user_id
+      field: user.entity.relationships.administered_by.user.id
       copy_from: entityanalytics_okta.user.profile.manager.id
       tag: set_user_entity_relationships_administered_by_user_id
       ignore_empty_value: true
@@ -751,7 +768,7 @@ processors:
       allow_duplicates: false
       if: ctx.entityanalytics_okta?.user?.profile?.manager?.name != null
   - set:
-      field: user.entity.relationships.administered_by.username
+      field: user.entity.relationships.administered_by.user.name
       copy_from: entityanalytics_okta.user.profile.manager.name
       tag: set_user_entity_relationships_administered_by_username
       ignore_empty_value: true

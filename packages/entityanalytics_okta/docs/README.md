@@ -411,8 +411,8 @@ This is the `User` dataset.
 | entityanalytics_okta.user.status | current status of user. | keyword |
 | entityanalytics_okta.user.status_changed | timestamp when status last changed. | date |
 | entityanalytics_okta.user.supervises.email | The supervised user's email address. | keyword |
-| entityanalytics_okta.user.supervises.user_id | The supervised user's ID. | keyword |
-| entityanalytics_okta.user.supervises.username | The supervised user's login name. | keyword |
+| entityanalytics_okta.user.supervises.user.id | The supervised user's ID. | keyword |
+| entityanalytics_okta.user.supervises.user.name | The supervised user's login name. | keyword |
 | entityanalytics_okta.user.transitioning_to_status | target status of an in-progress asynchronous status transition. | keyword |
 | entityanalytics_okta.user.type | user type that determines the schema for the user's profile. | flattened |
 | event.dataset | Event dataset. | constant_keyword |
@@ -432,13 +432,13 @@ This is the `User` dataset.
 | user.entity.attributes.mfa_enabled |  | boolean |
 | user.entity.attributes.permissions |  | keyword |
 | user.entity.lifecycle.last_activity |  | date |
-| user.entity.relationships.administered_by.user_id |  | keyword |
-| user.entity.relationships.administered_by.username |  | keyword |
-| user.entity.relationships.owns.host_id |  | keyword |
-| user.entity.relationships.owns.hostname |  | keyword |
+| user.entity.relationships.administered_by.user.id |  | keyword |
+| user.entity.relationships.administered_by.user.name |  | keyword |
+| user.entity.relationships.owns.host.id |  | keyword |
+| user.entity.relationships.owns.host.name |  | keyword |
 | user.entity.relationships.supervises.email |  | keyword |
-| user.entity.relationships.supervises.user_id |  | keyword |
-| user.entity.relationships.supervises.username |  | keyword |
+| user.entity.relationships.supervises.user.id |  | keyword |
+| user.entity.relationships.supervises.user.name |  | keyword |
 | user.geo.city_name |  | keyword |
 | user.geo.country_iso_code |  | keyword |
 | user.geo.name |  | keyword |

@@ -116,25 +116,25 @@
             - name: administered_by
               type: group
               fields:
-                - name: user_id
+                - name: user.id
                   type: keyword
-                - name: username
+                - name: user.name
                   type: keyword
             - name: owns
               type: group
               fields:
-                - name: host_id
+                - name: host.id
                   type: keyword
-                - name: hostname
+                - name: host.name
                   type: keyword
             - name: supervises
               type: group
               fields:
-                - name: user_id
+                - name: user.id
                   type: keyword
                 - name: email
                   type: keyword
-                - name: username
+                - name: user.name
                   type: keyword
         - name: attributes
           type: group

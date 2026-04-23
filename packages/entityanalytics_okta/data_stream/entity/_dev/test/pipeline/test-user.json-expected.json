@@ -603,8 +603,10 @@
                     },
                     "relationships": {
                         "administered_by": {
-                            "user_id": "00ub0oNGTSWTBKOLGLNR",
-                            "username": "Isaac Brock"
+                            "user": {
+                                "id": "00ub0oNGTSWTBKOLGLNR",
+                                "name": "Isaac Brock"
+                            }
                         }
                     }
                 },
@@ -780,13 +782,13 @@
                     "supervises": [
                         {
                             "email": "employee.one@example.com",
-                            "user_id": "00ub0oNGTSWTBKOLGLNA",
-                            "username": "employee.one@example.com"
+                            "user.id": "00ub0oNGTSWTBKOLGLNA",
+                            "user.name": "employee.one@example.com"
                         },
                         {
                             "email": "employee.two@example.com",
-                            "user_id": "00ub0oNGTSWTBKOLGLNB",
-                            "username": "employee.two@example.com"
+                            "user.id": "00ub0oNGTSWTBKOLGLNB",
+                            "user.name": "employee.two@example.com"
                         }
                     ]
                 }
@@ -818,13 +820,17 @@
                         "supervises": [
                             {
                                 "email": "employee.one@example.com",
-                                "user_id": "00ub0oNGTSWTBKOLGLNA",
-                                "username": "employee.one@example.com"
+                                "user": {
+                                    "id": "00ub0oNGTSWTBKOLGLNA",
+                                    "name": "employee.one@example.com"
+                                }
                             },
                             {
                                 "email": "employee.two@example.com",
-                                "user_id": "00ub0oNGTSWTBKOLGLNB",
-                                "username": "employee.two@example.com"
+                                "user": {
+                                    "id": "00ub0oNGTSWTBKOLGLNB",
+                                    "name": "employee.two@example.com"
+                                }
                             }
                         ]
                     }
@@ -895,8 +901,10 @@
                     "relationships": {
                         "owns": [
                             {
-                                "host_id": "guo4a5uyerdpvAiJT0h7",
-                                "hostname": "Dave's MacBook Pro"
+                                "host": {
+                                    "id": "guo4a5uyerdpvAiJT0h7",
+                                    "name": "Dave's MacBook Pro"
+                                }
                             }
                         ]
                     }
