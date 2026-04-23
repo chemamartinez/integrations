@@ -133,13 +133,17 @@
                         "administered_by": [
                             {
                                 "email": "alice@example.com",
-                                "user_id": "501",
-                                "username": "alice"
+                                "user": {
+                                    "id": "501",
+                                    "name": "alice"
+                                }
                             },
                             {
                                 "email": "carol@example.com",
-                                "user_id": "503",
-                                "username": "carol"
+                                "user": {
+                                    "id": "503",
+                                    "name": "carol"
+                                }
                             }
                         ]
                     }

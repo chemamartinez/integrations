@@ -26,9 +26,9 @@
             - name: administered_by
               type: group
               fields:
-                - name: user_id
+                - name: user.id
                   type: keyword
-                - name: username
+                - name: user.name
                   type: keyword
                 - name: email
                   type: keyword

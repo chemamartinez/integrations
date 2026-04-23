@@ -264,8 +264,10 @@ processors:
       for (def acct : ctx.jamf_pro.inventory.local_user_accounts) {
         if (acct.admin == true) {
           Map entry = new HashMap();
-          if (acct.uid != null && acct.uid != "") entry.put("user_id", acct.uid);
-          if (acct.username != null && acct.username != "") entry.put("username", acct.username);
+          Map userObj = new HashMap();
+          if (acct.uid != null && acct.uid != "") userObj.put("id", acct.uid);
+          if (acct.username != null && acct.username != "") userObj.put("name", acct.username);
+          if (!userObj.isEmpty()) entry.put("user", userObj);
           if (acct.email != null && acct.email != "") entry.put("email", acct.email);
           if (!entry.isEmpty()) admins.add(entry);
         }
