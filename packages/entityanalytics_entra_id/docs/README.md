@@ -313,8 +313,20 @@ An example event for `entity` looks as following:
 | entityanalytics_entra_id.device.trust_type | Type of trust for the joined device. Read-only. Possible values: Workplace (indicates bring your own personal devices), AzureAd (Cloud only joined devices), ServerAd (on-premises domain joined devices joined to Azure AD). | keyword |
 | entityanalytics_entra_id.device.version | For internal use only. | keyword |
 | entityanalytics_entra_id.user.account_enabled | true if the account is enabled; otherwise, false. | boolean |
+| entityanalytics_entra_id.user.app_role_assignments.app_role_display_name | The display name of the app role granted to the user. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.app_role_id | The id of the app role assigned to the principal. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.created_date_time | The time when the app role assignment was created. | date |
+| entityanalytics_entra_id.user.app_role_assignments.id | A unique identifier for the appRoleAssignment key. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.principal_display_name | The display name of the user that was granted the app role assignment. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.principal_id | The unique identifier of the user that was granted the app role. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.resource_display_name | The display name of the resource application to which the assignment was made. | keyword |
+| entityanalytics_entra_id.user.app_role_assignments.resource_id | The unique identifier of the resource application to which the assignment was made. | keyword |
 | entityanalytics_entra_id.user.business_phones | The telephone numbers for the user. | keyword |
 | entityanalytics_entra_id.user.department | The name of the department in which the user works. | keyword |
+| entityanalytics_entra_id.user.direct_reports.display_name | The display name of the direct report. | keyword |
+| entityanalytics_entra_id.user.direct_reports.id | The unique identifier of the direct report. | keyword |
+| entityanalytics_entra_id.user.direct_reports.mail | The SMTP address of the direct report. | keyword |
+| entityanalytics_entra_id.user.direct_reports.user_principal_name | The user principal name of the direct report. | keyword |
 | entityanalytics_entra_id.user.display_name | The name displayed in the address book for the user. This is usually the combination of the user's first name, middle initial and last name. | keyword |
 | entityanalytics_entra_id.user.given_name | The given name (first name) of the user. Maximum length is 64 characters. | keyword |
 | entityanalytics_entra_id.user.group.id | The unique identifier for the group. | keyword |
@@ -326,6 +338,17 @@ An example event for `entity` looks as following:
 | entityanalytics_entra_id.user.manager.id | The unique identifier for the manager. | keyword |
 | entityanalytics_entra_id.user.manager.mail | The SMTP address of the manager. | keyword |
 | entityanalytics_entra_id.user.manager.user_principal_name | The user principal name of the manager. | keyword |
+| entityanalytics_entra_id.user.mfa.is_mfa_capable | Whether the user is capable of MFA. | boolean |
+| entityanalytics_entra_id.user.mfa.is_mfa_registered | Whether the user has registered for MFA. | boolean |
+| entityanalytics_entra_id.user.mfa.is_passwordless_capable | Whether the user is capable of passwordless authentication. | boolean |
+| entityanalytics_entra_id.user.mfa.is_sspr_capable | Whether the user is capable of self-service password reset. | boolean |
+| entityanalytics_entra_id.user.mfa.is_sspr_enabled | Whether the user has self-service password reset enabled. | boolean |
+| entityanalytics_entra_id.user.mfa.is_sspr_registered | Whether the user has registered for self-service password reset. | boolean |
+| entityanalytics_entra_id.user.mfa.is_system_preferred_authentication_method_enabled | Whether the system preferred authentication method is enabled for the user. | boolean |
+| entityanalytics_entra_id.user.mfa.methods_registered | Collection of authentication methods registered by the user. | keyword |
+| entityanalytics_entra_id.user.mfa.system_preferred_authentication_methods | Collection of authentication methods that the system determined to be the most secure for the user. | keyword |
+| entityanalytics_entra_id.user.mfa.user_preferred_method_for_secondary_authentication | The method the user selected as the default second-factor for performing multi-factor authentication. | keyword |
+| entityanalytics_entra_id.user.mfa.user_type | Identifies whether the user is a member or guest in the tenant. | keyword |
 | entityanalytics_entra_id.user.mobile_phone | The primary cellular telephone number for the user. Read-only for users synced from on-premises directory. Maximum length is 64 characters. | keyword |
 | entityanalytics_entra_id.user.office_location | The office location in the user's place of business. | keyword |
 | entityanalytics_entra_id.user.preferred_language | The preferred language for the user. Should follow ISO 639-1 Code; for example en-US. | keyword |
@@ -344,10 +367,15 @@ An example event for `entity` looks as following:
 | log.flags | Flags for the log file. | keyword |
 | log.offset | Offset of the entry in the log file. | long |
 | user.enabled |  | boolean |
+| user.entity.attributes.mfa_enabled |  | boolean |
+| user.entity.attributes.permissions |  | keyword |
 | user.entity.lifecycle.last_activity |  | date |
 | user.entity.relationships.administered_by.email |  | keyword |
 | user.entity.relationships.administered_by.user_id |  | keyword |
 | user.entity.relationships.administered_by.username |  | keyword |
+| user.entity.relationships.supervises.email |  | keyword |
+| user.entity.relationships.supervises.user_id |  | keyword |
+| user.entity.relationships.supervises.username |  | keyword |
 | user.first_name |  | keyword |
 | user.group.id |  | keyword |
 | user.group.name |  | keyword |

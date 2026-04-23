@@ -25,6 +25,7 @@ enrich_with:
 {{/if}}
 {{#if user_sign_in_activity}}
 select.users:
+  - accountEnabled
   - userPrincipalName
   - mail
   - displayName
@@ -34,8 +35,6 @@ select.users:
   - officeLocation
   - mobilePhone
   - businessPhones
-  - accountEnabled
-  - department
   - signInActivity
 {{/if}}
 {{#if user_manager}}
