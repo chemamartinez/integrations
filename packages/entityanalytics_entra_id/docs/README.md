@@ -371,11 +371,11 @@ An example event for `entity` looks as following:
 | user.entity.attributes.permissions |  | keyword |
 | user.entity.lifecycle.last_activity |  | date |
 | user.entity.relationships.administered_by.email |  | keyword |
-| user.entity.relationships.administered_by.user_id |  | keyword |
-| user.entity.relationships.administered_by.username |  | keyword |
+| user.entity.relationships.administered_by.user.id |  | keyword |
+| user.entity.relationships.administered_by.user.name |  | keyword |
 | user.entity.relationships.supervises.email |  | keyword |
-| user.entity.relationships.supervises.user_id |  | keyword |
-| user.entity.relationships.supervises.username |  | keyword |
+| user.entity.relationships.supervises.user.id |  | keyword |
+| user.entity.relationships.supervises.user.name |  | keyword |
 | user.first_name |  | keyword |
 | user.group.id |  | keyword |
 | user.group.name |  | keyword |

@@ -251,8 +251,10 @@
                         "administered_by": [
                             {
                                 "email": "example.user@example.com",
-                                "user_id": "5ebc6a0f-05b7-4f42-9c8a-682bbc75d0fc",
-                                "username": "example.user@example.com"
+                                "user": {
+                                    "id": "5ebc6a0f-05b7-4f42-9c8a-682bbc75d0fc",
+                                    "name": "example.user@example.com"
+                                }
                             }
                         ]
                     }
@@ -406,13 +408,17 @@
                         "administered_by": [
                             {
                                 "email": "alice.smith@example.com",
-                                "user_id": "5ebc6a0f-05b7-4f42-9c8a-682bbc75d0fc",
-                                "username": "alice.smith@example.com"
+                                "user": {
+                                    "id": "5ebc6a0f-05b7-4f42-9c8a-682bbc75d0fc",
+                                    "name": "alice.smith@example.com"
+                                }
                             },
                             {
                                 "email": "bob.jones@example.com",
-                                "user_id": "7fa23b1e-11cd-4c53-ad7b-993ce2fb81a1",
-                                "username": "bob.jones@example.com"
+                                "user": {
+                                    "id": "7fa23b1e-11cd-4c53-ad7b-993ce2fb81a1",
+                                    "name": "bob.jones@example.com"
+                                }
                             }
                         ]
                     }

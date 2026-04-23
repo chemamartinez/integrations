@@ -438,20 +438,26 @@
                         "administered_by": [
                             {
                                 "email": "manager.one@example.com",
-                                "user_id": "cc112233-4455-6677-8899-aabbccddeeff",
-                                "username": "manager.one@example.com"
+                                "user": {
+                                    "id": "cc112233-4455-6677-8899-aabbccddeeff",
+                                    "name": "manager.one@example.com"
+                                }
                             }
                         ],
                         "supervises": [
                             {
                                 "email": "report.one@example.com",
-                                "user_id": "ee556677-8899-aabb-ccdd-eeff00112233",
-                                "username": "report.one@example.com"
+                                "user": {
+                                    "id": "ee556677-8899-aabb-ccdd-eeff00112233",
+                                    "name": "report.one@example.com"
+                                }
                             },
                             {
                                 "email": "report.two@example.com",
-                                "user_id": "ff667788-99aa-bbcc-ddee-ff0011223344",
-                                "username": "report.two@example.com"
+                                "user": {
+                                    "id": "ff667788-99aa-bbcc-ddee-ff0011223344",
+                                    "name": "report.two@example.com"
+                                }
                             }
                         ]
                     }

@@ -233,19 +233,26 @@ processors:
       copy_from: entityanalytics_entra_id.user.mfa.is_mfa_registered
       tag: set_user_entity_attributes_mfa_enabled
       ignore_empty_value: true
-  - foreach:
-      field: entityanalytics_entra_id.user.direct_reports
+  - script:
+      lang: painless
+      tag: script_set_user_entity_relationships_supervises
+      description: Build user.entity.relationships.supervises from direct reports list.
       if: ctx.entityanalytics_entra_id?.user?.direct_reports instanceof List
-      ignore_failure: true
-      processor:
-        append:
-          field: user.entity.relationships.supervises
-          value:
-            user_id: "{{{_ingest._value.id}}}"
-            username: "{{{_ingest._value.user_principal_name}}}"
-            email: "{{{_ingest._value.mail}}}"
-          tag: append_direct_reports_to_supervises
-          allow_duplicates: false
+      source: |
+        def supervises = new ArrayList();
+        for (def report : ctx.entityanalytics_entra_id.user.direct_reports) {
+          def entry = new HashMap();
+          def userObj = new HashMap();
+          if (report?.id != null) userObj.put("id", report.id);
+          if (report?.user_principal_name != null) userObj.put("name", report.user_principal_name);
+          if (!userObj.isEmpty()) entry.put("user", userObj);
+          if (report?.mail != null) entry.put("email", report.mail);
+          supervises.add(entry);
+        }
+        if (ctx.user == null) ctx.user = new HashMap();
+        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user.entity.relationships.put("supervises", supervises);
   - foreach:
       field: entityanalytics_entra_id.user.app_role_assignments
       if: ctx.entityanalytics_entra_id?.user?.app_role_assignments instanceof List
@@ -256,14 +263,23 @@ processors:
           value: "{{{_ingest._value.app_role_display_name}}}"
           tag: append_app_role_display_name_to_permissions
           allow_duplicates: false
-  - set:
-      field: user.entity.relationships.administered_by
-      tag: set_user_entity_administered_by
+  - script:
+      lang: painless
+      tag: script_set_user_entity_relationships_administered_by
+      description: Build user.entity.relationships.administered_by from manager.
       if: ctx.entityanalytics_entra_id?.user?.manager?.id != null
-      value:
-        - user_id: "{{{entityanalytics_entra_id.user.manager.id}}}"
-          username: "{{{entityanalytics_entra_id.user.manager.user_principal_name}}}"
-          email: "{{{entityanalytics_entra_id.user.manager.mail}}}"
+      source: |
+        def entry = new HashMap();
+        def userObj = new HashMap();
+        def manager = ctx.entityanalytics_entra_id.user.manager;
+        if (manager?.id != null) userObj.put("id", manager.id);
+        if (manager?.user_principal_name != null) userObj.put("name", manager.user_principal_name);
+        if (!userObj.isEmpty()) entry.put("user", userObj);
+        if (manager?.mail != null) entry.put("email", manager.mail);
+        if (ctx.user == null) ctx.user = new HashMap();
+        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
+        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user.entity.relationships.put("administered_by", [entry]);
 on_failure:
   - append:
       field: error.message

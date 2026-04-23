@@ -135,18 +135,18 @@
               fields:
                 - name: email
                   type: keyword
-                - name: user_id
+                - name: user.id
                   type: keyword
-                - name: username
+                - name: user.name
                   type: keyword
             - name: supervises
               type: group
               fields:
                 - name: email
                   type: keyword
-                - name: user_id
+                - name: user.id
                   type: keyword
-                - name: username
+                - name: user.name
                   type: keyword
     - name: enabled
       type: boolean
