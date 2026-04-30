@@ -538,26 +538,6 @@ processors:
       copy_from: device.registered_owners
       tag: set_entityanalytics_entra_id_device_registered_owners
       ignore_empty_value: true
-  - script:
-      lang: painless
-      tag: script_set_user_entity_relationships_administered_by
-      description: Build user.entity.relationships.administered_by from registered owners list.
-      if: ctx.device?.registered_owners instanceof List
-      source: |
-        def administered_by = new ArrayList();
-        for (def owner : ctx.device.registered_owners) {
-          def entry = new HashMap();
-          def userObj = new HashMap();
-          if (owner?.id != null) userObj.put("id", owner.id);
-          if (owner?.user_principal_name != null) userObj.put("name", owner.user_principal_name);
-          if (!userObj.isEmpty()) entry.put("user", userObj);
-          if (owner?.mail != null) entry.put("email", owner.mail);
-          administered_by.add(entry);
-        }
-        if (ctx.user == null) ctx.user = new HashMap();
-        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
-        ctx.user.entity.relationships.put("administered_by", administered_by);
 on_failure:
   - append:
       field: error.message

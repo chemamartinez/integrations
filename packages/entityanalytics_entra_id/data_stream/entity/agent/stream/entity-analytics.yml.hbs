@@ -37,16 +37,7 @@ select.users:
   - businessPhones
   - signInActivity
 {{/if}}
-{{#if user_manager}}
-expand.users:
-  - manager
 {{#if user_direct_reports}}
-  - directReports
-{{/if}}
-{{#if user_app_role_assignments}}
-  - appRoleAssignments
-{{/if}}
-{{else if user_direct_reports}}
 expand.users:
   - directReports
 {{#if user_app_role_assignments}}

@@ -130,15 +130,6 @@
         - name: relationships
           type: group
           fields:
-            - name: administered_by
-              type: group
-              fields:
-                - name: email
-                  type: keyword
-                - name: user.id
-                  type: keyword
-                - name: user.name
-                  type: keyword
             - name: supervises
               type: group
               fields:

@@ -435,15 +435,6 @@
                         "last_activity": "2024-03-01T09:00:00.000Z"
                     },
                     "relationships": {
-                        "administered_by": [
-                            {
-                                "email": "manager.one@example.com",
-                                "user": {
-                                    "id": "cc112233-4455-6677-8899-aabbccddeeff",
-                                    "name": "manager.one@example.com"
-                                }
-                            }
-                        ],
                         "supervises": [
                             {
                                 "email": "report.one@example.com",

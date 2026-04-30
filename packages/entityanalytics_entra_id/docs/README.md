@@ -370,9 +370,6 @@ An example event for `entity` looks as following:
 | user.entity.attributes.mfa_enabled |  | boolean |
 | user.entity.attributes.permissions |  | keyword |
 | user.entity.lifecycle.last_activity |  | date |
-| user.entity.relationships.administered_by.email |  | keyword |
-| user.entity.relationships.administered_by.user.id |  | keyword |
-| user.entity.relationships.administered_by.user.name |  | keyword |
 | user.entity.relationships.supervises.email |  | keyword |
 | user.entity.relationships.supervises.user.id |  | keyword |
 | user.entity.relationships.supervises.user.name |  | keyword |
