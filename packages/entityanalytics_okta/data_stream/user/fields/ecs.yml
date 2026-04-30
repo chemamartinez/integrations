@@ -113,13 +113,6 @@
         - name: relationships
           type: group
           fields:
-            - name: administered_by
-              type: group
-              fields:
-                - name: user.id
-                  type: keyword
-                - name: user.name
-                  type: keyword
             - name: owns
               type: group
               fields:

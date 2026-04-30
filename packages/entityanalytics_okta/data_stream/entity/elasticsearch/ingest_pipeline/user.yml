@@ -751,11 +751,6 @@ processors:
       copy_from: entityanalytics_okta.user.profile.manager.id
       tag: set_user_profile_manager
       ignore_empty_value: true
-  - set:
-      field: user.entity.relationships.administered_by.user.id
-      copy_from: entityanalytics_okta.user.profile.manager.id
-      tag: set_user_entity_relationships_administered_by_user_id
-      ignore_empty_value: true
   - rename:
       field: okta.profile.manager
       target_field: entityanalytics_okta.user.profile.manager.name
@@ -767,11 +762,6 @@ processors:
       tag: append_user_profile_manager_name_into_related_user
       allow_duplicates: false
       if: ctx.entityanalytics_okta?.user?.profile?.manager?.name != null
-  - set:
-      field: user.entity.relationships.administered_by.user.name
-      copy_from: entityanalytics_okta.user.profile.manager.name
-      tag: set_user_entity_relationships_administered_by_username
-      ignore_empty_value: true
   - set:
       field: okta.credentials.recovery_question.is_set
       value: true
