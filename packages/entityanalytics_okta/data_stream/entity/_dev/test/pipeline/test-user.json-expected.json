@@ -729,8 +729,8 @@
                 "entity": {
                     "attributes": {
                         "permissions": [
-                            "okta.users.read",
-                            "okta.apps.read"
+                            "okta.apps.read",
+                            "okta.users.read"
                         ]
                     },
                     "lifecycle": {

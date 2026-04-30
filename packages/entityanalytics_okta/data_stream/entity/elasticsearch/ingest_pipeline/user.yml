@@ -320,17 +320,19 @@ processors:
       if: ctx.entityanalytics_okta?.roles instanceof List
       source: |
         for (def role : ctx.entityanalytics_okta.roles) {
-          if (!(role?.permissions instanceof List)) continue;
+          if (!(role?.permissions instanceof List)) {
+            continue;
+          }
           for (def perm : role.permissions) {
             def label = perm?.label;
-            if (label == null || label == '') continue;
-            if (ctx.user == null) ctx.user = new HashMap();
-            if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-            if (ctx.user.entity.attributes == null) ctx.user.entity.attributes = new HashMap();
-            if (ctx.user.entity.attributes.permissions == null) ctx.user.entity.attributes.permissions = new ArrayList();
-            if (!ctx.user.entity.attributes.permissions.contains(label)) {
-              ctx.user.entity.attributes.permissions.add(label);
+            if (label == null || label == '') {
+              continue;
             }
+            ctx.user = ctx.user ?: new HashMap();
+            ctx.user.entity = ctx.user.entity ?: new HashMap();
+            ctx.user.entity.attributes = ctx.user.entity.attributes ?: new HashMap();
+            ctx.user.entity.attributes.permissions = ctx.user.entity.attributes.permissions ?: new HashSet();
+            ctx.user.entity.attributes.permissions.add(label);
           }
         }
   - rename:
@@ -345,13 +347,14 @@ processors:
       if: ctx.entityanalytics_okta?.user?.factors instanceof List
       source: |
         for (def f : ctx.entityanalytics_okta.user.factors) {
-          if ("ACTIVE".equals(f?.status)) {
-            if (ctx.user == null) ctx.user = new HashMap();
-            if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-            if (ctx.user.entity.attributes == null) ctx.user.entity.attributes = new HashMap();
-            ctx.user.entity.attributes.put("mfa_enabled", true);
-            return;
+          if (f == null || f.status != "ACTIVE") {
+            continue;
           }
+          ctx.user = ctx.user ?: new HashMap();
+          ctx.user.entity = ctx.user.entity ?: new HashMap();
+          ctx.user.entity.attributes = ctx.user.entity.attributes ?: new HashMap();
+          ctx.user.entity.attributes.put("mfa_enabled", true);
+          return;
         }
   - rename:
       field: devices
@@ -366,17 +369,20 @@ processors:
       source: |
         def owns = new ArrayList();
         for (def device : ctx.entityanalytics_okta.user.devices) {
+          if (device == null) {
+            continue;
+          }
           def entry = new HashMap();
           def hostObj = new HashMap();
-          if (device?.id != null) hostObj.put("id", device.id);
+          if (device.id != null) hostObj.put("id", device.id);
           def displayName = device?.profile?.displayName;
           if (displayName != null) hostObj.put("name", displayName);
           if (!hostObj.isEmpty()) entry.put("host", hostObj);
           owns.add(entry);
         }
-        if (ctx.user == null) ctx.user = new HashMap();
-        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user = ctx.user ?: new HashMap();
+        ctx.user.entity = ctx.user.entity ?: new HashMap();
+        ctx.user.entity.relationships = ctx.user.entity.relationships ?: new HashMap();
         ctx.user.entity.relationships.put("owns", owns);
   - rename:
       field: supervises
@@ -392,6 +398,9 @@ processors:
         def supervises = new ArrayList();
         def renamedSupervises = new ArrayList();
         for (def supervised : ctx.entityanalytics_okta.user.supervises) {
+          if (supervised == null) {
+            continue;
+          }
           def entry = new HashMap();
           def raw = new HashMap();
           def userObj = new HashMap();
@@ -412,9 +421,9 @@ processors:
           renamedSupervises.add(raw);
         }
         ctx.entityanalytics_okta.user.supervises = renamedSupervises;
-        if (ctx.user == null) ctx.user = new HashMap();
-        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user = ctx.user ?: new HashMap();
+        ctx.user.entity = ctx.user.entity ?: new HashMap();
+        ctx.user.entity.relationships = ctx.user.entity.relationships ?: new HashMap();
         ctx.user.entity.relationships.put("supervises", supervises);
   - rename:
       field: okta.transitioningToStatus
