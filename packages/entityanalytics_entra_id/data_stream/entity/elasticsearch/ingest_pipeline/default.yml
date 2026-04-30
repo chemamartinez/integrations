@@ -14,9 +14,7 @@ processors:
       source: |
         def stringified_orig = Json.dump(ctx);
         if (stringified_orig != null) {
-          if (ctx.event == null) {
-            ctx.event = new HashMap();
-          }
+          ctx.event = ctx.event ?: new HashMap();
           ctx.event.original = stringified_orig;
         }
   - remove:

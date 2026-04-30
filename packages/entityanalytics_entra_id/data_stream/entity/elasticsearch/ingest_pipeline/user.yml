@@ -241,17 +241,18 @@ processors:
       source: |
         def supervises = new ArrayList();
         for (def report : ctx.entityanalytics_entra_id.user.direct_reports) {
+          if (report == null) { continue; }
           def entry = new HashMap();
           def userObj = new HashMap();
-          if (report?.id != null) userObj.put("id", report.id);
-          if (report?.user_principal_name != null) userObj.put("name", report.user_principal_name);
-          if (!userObj.isEmpty()) entry.put("user", userObj);
-          if (report?.mail != null) entry.put("email", report.mail);
-          if (!entry.isEmpty()) supervises.add(entry);
+          if (report.id != null) { userObj.put("id", report.id); }
+          if (report.user_principal_name != null) { userObj.put("name", report.user_principal_name); }
+          if (!userObj.isEmpty()) { entry.put("user", userObj); }
+          if (report.mail != null) { entry.put("email", report.mail); }
+          if (!entry.isEmpty()) { supervises.add(entry); }
         }
-        if (ctx.user == null) ctx.user = new HashMap();
-        if (ctx.user.entity == null) ctx.user.entity = new HashMap();
-        if (ctx.user.entity.relationships == null) ctx.user.entity.relationships = new HashMap();
+        ctx.user = ctx.user ?: new HashMap();
+        ctx.user.entity = ctx.user.entity ?: new HashMap();
+        ctx.user.entity.relationships = ctx.user.entity.relationships ?: new HashMap();
         ctx.user.entity.relationships.put("supervises", supervises);
   - foreach:
       field: entityanalytics_entra_id.user.app_role_assignments
