@@ -60,8 +60,6 @@
           type: keyword
         - name: direct_reports
           type: keyword
-        - name: managed_by
-          type: keyword
         - name: managed_objects
           type: keyword
         - name: msDS-*

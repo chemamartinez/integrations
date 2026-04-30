@@ -91,33 +91,45 @@
         - name: relationships
           type: group
           fields:
+            - name: administers
+              type: group
+              fields:
+                - name: host
+                  type: group
+                  fields:
+                    - name: id
+                      type: keyword
+                      normalize:
+                        - array
+                    - name: name
+                      type: keyword
+                      normalize:
+                        - array
+                - name: user
+                  type: group
+                  fields:
+                    - name: domain
+                      type: keyword
+                      normalize:
+                        - array
             - name: supervises
               type: group
               fields:
-                - name: id
-                  type: keyword
-                - name: name
-                  type: keyword
-                - name: domain
-                  type: keyword
-            - name: owns
-              type: group
-              fields:
-                - name: id
-                  type: keyword
-                - name: name
-                  type: keyword
-                - name: domain
-                  type: keyword
-            - name: administered_by
-              type: group
-              fields:
-                - name: id
-                  type: keyword
-                - name: name
-                  type: keyword
-                - name: domain
-                  type: keyword
+                - name: user
+                  type: group
+                  fields:
+                    - name: id
+                      type: keyword
+                      normalize:
+                        - array
+                    - name: name
+                      type: keyword
+                      normalize:
+                        - array
+                    - name: domain
+                      type: keyword
+                      normalize:
+                        - array
     - name: profile
       type: group
       fields:

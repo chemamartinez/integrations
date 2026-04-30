@@ -63,8 +63,6 @@
           type: keyword
         - name: direct_reports
           type: keyword
-        - name: managed_by
-          type: keyword
         - name: managed_objects
           type: keyword
         - name: msDS-*
@@ -184,8 +182,6 @@
         - name: member_of
           type: keyword
         - name: direct_reports
-          type: keyword
-        - name: managed_by
           type: keyword
         - name: managed_objects
           type: keyword
@@ -308,8 +304,6 @@
         - name: member_of
           type: keyword
         - name: direct_reports
-          type: keyword
-        - name: managed_by
           type: keyword
         - name: managed_objects
           type: keyword

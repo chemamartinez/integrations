@@ -40,9 +40,6 @@
                     "last_logon": "2025-10-07T13:39:18.7867226Z",
                     "last_logon_timestamp": "2025-09-30T14:42:35.7840088Z",
                     "logon_count": "2275",
-                    "managed_by": [
-                        "CN=Jane Smith,OU=IT,DC=org,DC=test,DC=local"
-                    ],
                     "managed_objects": [
                         "CN=SomeResource,OU=Resources,DC=org,DC=test,DC=local"
                     ],
@@ -176,38 +173,33 @@
                         "last_activity": "2025-09-30T14:42:35.784Z"
                     },
                     "relationships": {
-                        "administered_by": {
-                            "domain": [
-                                "org.test.local"
-                            ],
-                            "id": [
-                                "CN=Jane Smith,OU=IT,DC=org,DC=test,DC=local"
-                            ],
-                            "name": [
-                                "Jane Smith"
-                            ]
-                        },
-                        "owns": {
-                            "domain": [
-                                "org.test.local"
-                            ],
-                            "id": [
-                                "CN=SomeResource,OU=Resources,DC=org,DC=test,DC=local"
-                            ],
-                            "name": [
-                                "SomeResource"
-                            ]
+                        "administers": {
+                            "host": {
+                                "id": [
+                                    "CN=SomeResource,OU=Resources,DC=org,DC=test,DC=local"
+                                ],
+                                "name": [
+                                    "SomeResource"
+                                ]
+                            },
+                            "user": {
+                                "domain": [
+                                    "org.test.local"
+                                ]
+                            }
                         },
                         "supervises": {
-                            "domain": [
-                                "org.test.local"
-                            ],
-                            "id": [
-                                "CN=SubDevice01,OU=Computers,DC=org,DC=test,DC=local"
-                            ],
-                            "name": [
-                                "SubDevice01"
-                            ]
+                            "user": {
+                                "domain": [
+                                    "org.test.local"
+                                ],
+                                "id": [
+                                    "CN=SubDevice01,OU=Computers,DC=org,DC=test,DC=local"
+                                ],
+                                "name": [
+                                    "SubDevice01"
+                                ]
+                            }
                         }
                     }
                 },

@@ -254,8 +254,8 @@ processors:
       lang: painless
       ignore_failure: true
       tag: set_device_relationships
-      description: Build host.entity.relationships from managedObjects (owns), managedBy (administered_by), and directReports (supervises).
-      if: ctx.activedirectory?.device?.managed_objects != null || ctx.activedirectory?.device?.managed_by != null || ctx.activedirectory?.device?.direct_reports != null
+      description: Build host.entity.relationships from managedObjects (administers) and directReports (supervises).
+      if: ctx.activedirectory?.device?.managed_objects != null || ctx.activedirectory?.device?.direct_reports != null
       source: |-
         def parseDn(def dn) {
           def result = ['id': dn];
@@ -288,21 +288,41 @@ processors:
           }
           return result;
         }
-        def buildRel(def dns) {
-          def rel = [:];
+        def buildHostRel(def dns) {
+          def rel = ['host': [:]];
           def dnList = (dns instanceof List) ? dns : [dns];
           for (def dn : dnList) {
             if (!(dn instanceof String) || dn.isEmpty()) continue;
             def p = parseDn(dn);
-            if (!rel.containsKey('id')) rel['id'] = new ArrayList();
-            rel['id'].add(p['id']);
+            if (!rel['host'].containsKey('id')) rel['host']['id'] = new ArrayList();
+            rel['host']['id'].add(p['id']);
             if (p.containsKey('name')) {
-              if (!rel.containsKey('name')) rel['name'] = new ArrayList();
-              rel['name'].add(p['name']);
+              if (!rel['host'].containsKey('name')) rel['host']['name'] = new ArrayList();
+              rel['host']['name'].add(p['name']);
             }
             if (p.containsKey('domain')) {
-              if (!rel.containsKey('domain')) rel['domain'] = new ArrayList();
-              rel['domain'].add(p['domain']);
+              if (!rel.containsKey('user')) rel['user'] = [:];
+              if (!rel['user'].containsKey('domain')) rel['user']['domain'] = new ArrayList();
+              rel['user']['domain'].add(p['domain']);
+            }
+          }
+          return rel;
+        }
+        def buildUserRel(def dns) {
+          def rel = ['user': [:]];
+          def dnList = (dns instanceof List) ? dns : [dns];
+          for (def dn : dnList) {
+            if (!(dn instanceof String) || dn.isEmpty()) continue;
+            def p = parseDn(dn);
+            if (!rel['user'].containsKey('id')) rel['user']['id'] = new ArrayList();
+            rel['user']['id'].add(p['id']);
+            if (p.containsKey('name')) {
+              if (!rel['user'].containsKey('name')) rel['user']['name'] = new ArrayList();
+              rel['user']['name'].add(p['name']);
+            }
+            if (p.containsKey('domain')) {
+              if (!rel['user'].containsKey('domain')) rel['user']['domain'] = new ArrayList();
+              rel['user']['domain'].add(p['domain']);
             }
           }
           return rel;
@@ -311,13 +331,10 @@ processors:
         ctx.host.entity = ctx.host.entity ?: [:];
         ctx.host.entity.relationships = ctx.host.entity.relationships ?: [:];
         if (ctx.activedirectory?.device?.managed_objects != null) {
-          ctx.host.entity.relationships.owns = buildRel(ctx.activedirectory.device.managed_objects);
-        }
-        if (ctx.activedirectory?.device?.managed_by != null) {
-          ctx.host.entity.relationships.administered_by = buildRel(ctx.activedirectory.device.managed_by);
+          ctx.host.entity.relationships.administers = buildHostRel(ctx.activedirectory.device.managed_objects);
         }
         if (ctx.activedirectory?.device?.direct_reports != null) {
-          ctx.host.entity.relationships.supervises = buildRel(ctx.activedirectory.device.direct_reports);
+          ctx.host.entity.relationships.supervises = buildUserRel(ctx.activedirectory.device.direct_reports);
         }
 
   - set:

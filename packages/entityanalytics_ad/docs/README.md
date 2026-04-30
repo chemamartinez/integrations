@@ -174,7 +174,6 @@ This is the `User` dataset.
 | entityanalytics_ad.user.logon_count |  | keyword |
 | entityanalytics_ad.user.logon_script_enabled | True if a logon script is configured for the account. | boolean |
 | entityanalytics_ad.user.mail | The user's email address from Active Directory. | keyword |
-| entityanalytics_ad.user.managed_by |  | keyword |
 | entityanalytics_ad.user.managed_objects |  | keyword |
 | entityanalytics_ad.user.member_of |  | keyword |
 | entityanalytics_ad.user.msDS-\* |  | keyword |
@@ -219,15 +218,12 @@ This is the `User` dataset.
 | user.account.status.suspended |  | boolean |
 | user.entity.attributes.mfa_enabled |  | boolean |
 | user.entity.lifecycle.last_activity |  | date |
-| user.entity.relationships.administered_by.domain |  | keyword |
-| user.entity.relationships.administered_by.id |  | keyword |
-| user.entity.relationships.administered_by.name |  | keyword |
-| user.entity.relationships.owns.domain |  | keyword |
-| user.entity.relationships.owns.id |  | keyword |
-| user.entity.relationships.owns.name |  | keyword |
-| user.entity.relationships.supervises.domain |  | keyword |
-| user.entity.relationships.supervises.id |  | keyword |
-| user.entity.relationships.supervises.name |  | keyword |
+| user.entity.relationships.administers.host.id |  | keyword |
+| user.entity.relationships.administers.host.name |  | keyword |
+| user.entity.relationships.administers.user.domain |  | keyword |
+| user.entity.relationships.supervises.user.domain |  | keyword |
+| user.entity.relationships.supervises.user.id |  | keyword |
+| user.entity.relationships.supervises.user.name |  | keyword |
 | user.geo.city_name |  | keyword |
 | user.geo.country_iso_code |  | keyword |
 | user.geo.name |  | keyword |
@@ -295,7 +291,6 @@ This is the `Device` dataset.
 | entityanalytics_ad.device.locked | True if the account is locked out. | boolean |
 | entityanalytics_ad.device.logon_count |  | keyword |
 | entityanalytics_ad.device.logon_script_enabled | True if a logon script is configured for the account. | boolean |
-| entityanalytics_ad.device.managed_by |  | keyword |
 | entityanalytics_ad.device.managed_objects |  | keyword |
 | entityanalytics_ad.device.member_of |  | keyword |
 | entityanalytics_ad.device.msDS-\* |  | keyword |
@@ -351,15 +346,12 @@ This is the `Device` dataset.
 | event.module | Name of the module this data is coming from. If your monitoring agent supports the concept of modules or plugins to process events of a given source (e.g. Apache logs), `event.module` should contain the name of this module. | constant_keyword |
 | host.entity.attributes.managed |  | boolean |
 | host.entity.lifecycle.last_activity |  | date |
-| host.entity.relationships.administered_by.domain |  | keyword |
-| host.entity.relationships.administered_by.id |  | keyword |
-| host.entity.relationships.administered_by.name |  | keyword |
-| host.entity.relationships.owns.domain |  | keyword |
-| host.entity.relationships.owns.id |  | keyword |
-| host.entity.relationships.owns.name |  | keyword |
-| host.entity.relationships.supervises.domain |  | keyword |
-| host.entity.relationships.supervises.id |  | keyword |
-| host.entity.relationships.supervises.name |  | keyword |
+| host.entity.relationships.administers.host.id |  | keyword |
+| host.entity.relationships.administers.host.name |  | keyword |
+| host.entity.relationships.administers.user.domain |  | keyword |
+| host.entity.relationships.supervises.user.domain |  | keyword |
+| host.entity.relationships.supervises.user.id |  | keyword |
+| host.entity.relationships.supervises.user.name |  | keyword |
 | input.type | Type of filebeat input. | keyword |
 | labels.identity_source |  | keyword |
 | user.account.activated_date |  | date |

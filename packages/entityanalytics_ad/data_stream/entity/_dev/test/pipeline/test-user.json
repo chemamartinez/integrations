@@ -194,9 +194,6 @@
                         "CN=Jane Smith,OU=Staff,DC=testserver,DC=local",
                         "CN=John Doe,OU=Staff,DC=testserver,DC=local"
                     ],
-                    "managedBy": [
-                        "CN=Domain Admins,CN=Users,DC=testserver,DC=local"
-                    ],
                     "managedObjects": [
                         "CN=Workstation01,OU=Computers,DC=testserver,DC=local"
                     ]

@@ -56,9 +56,6 @@
                     "directReports": [
                         "CN=SubDevice01,OU=Computers,DC=org,DC=test,DC=local"
                     ],
-                    "managedBy": [
-                        "CN=Jane Smith,OU=IT,DC=org,DC=test,DC=local"
-                    ],
                     "managedObjects": [
                         "CN=SomeResource,OU=Resources,DC=org,DC=test,DC=local"
                     ]

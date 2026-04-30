@@ -200,9 +200,6 @@
                     "last_logon_timestamp": "2024-03-27T04:30:09.6399883Z",
                     "logon_count": "8",
                     "mail": "admin@testserver.local",
-                    "managed_by": [
-                        "CN=Domain Admins,CN=Users,DC=testserver,DC=local"
-                    ],
                     "managed_objects": [
                         "CN=Workstation01,OU=Computers,DC=testserver,DC=local"
                     ],
@@ -277,41 +274,36 @@
                         "last_activity": "2024-03-27T04:30:09.639Z"
                     },
                     "relationships": {
-                        "administered_by": {
-                            "domain": [
-                                "testserver.local"
-                            ],
-                            "id": [
-                                "CN=Domain Admins,CN=Users,DC=testserver,DC=local"
-                            ],
-                            "name": [
-                                "Domain Admins"
-                            ]
-                        },
-                        "owns": {
-                            "domain": [
-                                "testserver.local"
-                            ],
-                            "id": [
-                                "CN=Workstation01,OU=Computers,DC=testserver,DC=local"
-                            ],
-                            "name": [
-                                "Workstation01"
-                            ]
+                        "administers": {
+                            "host": {
+                                "id": [
+                                    "CN=Workstation01,OU=Computers,DC=testserver,DC=local"
+                                ],
+                                "name": [
+                                    "Workstation01"
+                                ]
+                            },
+                            "user": {
+                                "domain": [
+                                    "testserver.local"
+                                ]
+                            }
                         },
                         "supervises": {
-                            "domain": [
-                                "testserver.local",
-                                "testserver.local"
-                            ],
-                            "id": [
-                                "CN=Jane Smith,OU=Staff,DC=testserver,DC=local",
-                                "CN=John Doe,OU=Staff,DC=testserver,DC=local"
-                            ],
-                            "name": [
-                                "Jane Smith",
-                                "John Doe"
-                            ]
+                            "user": {
+                                "domain": [
+                                    "testserver.local",
+                                    "testserver.local"
+                                ],
+                                "id": [
+                                    "CN=Jane Smith,OU=Staff,DC=testserver,DC=local",
+                                    "CN=John Doe,OU=Staff,DC=testserver,DC=local"
+                                ],
+                                "name": [
+                                    "Jane Smith",
+                                    "John Doe"
+                                ]
+                            }
                         }
                     }
                 },
