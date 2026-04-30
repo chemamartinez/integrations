@@ -14,21 +14,3 @@
           fields:
             - name: last_activity
               type: date
-- name: user
-  type: group
-  fields:
-    - name: entity
-      type: group
-      fields:
-        - name: attributes
-          type: group
-          fields:
-            - name: administered_by
-              type: group
-              fields:
-                - name: user.id
-                  type: keyword
-                - name: user.name
-                  type: keyword
-                - name: email
-                  type: keyword

@@ -377,9 +377,6 @@ The following non-ECS fields are used in inventory documents:
 | jamf_pro.inventory.user_and_location.realname |  | keyword |
 | jamf_pro.inventory.user_and_location.room |  | keyword |
 | jamf_pro.inventory.user_and_location.username |  | keyword |
-| user.entity.attributes.administered_by.email |  | keyword |
-| user.entity.attributes.administered_by.user.id |  | keyword |
-| user.entity.attributes.administered_by.user.name |  | keyword |
 
 
 ### Events
