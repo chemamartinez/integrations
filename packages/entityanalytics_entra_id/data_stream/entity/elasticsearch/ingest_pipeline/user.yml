@@ -247,7 +247,7 @@ processors:
           if (report?.user_principal_name != null) userObj.put("name", report.user_principal_name);
           if (!userObj.isEmpty()) entry.put("user", userObj);
           if (report?.mail != null) entry.put("email", report.mail);
-          supervises.add(entry);
+          if (!entry.isEmpty()) supervises.add(entry);
         }
         if (ctx.user == null) ctx.user = new HashMap();
         if (ctx.user.entity == null) ctx.user.entity = new HashMap();
