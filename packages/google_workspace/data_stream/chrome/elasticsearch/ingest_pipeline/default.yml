@@ -444,16 +444,12 @@ processors:
   - grok:
       field: google_workspace.chrome.device_user
       tag: grok_device_user
-      description: >-
-        DOMAIN\user@domain.com must be tried first; otherwise the @-only pattern
-        would greedily match the suffix and leave the domain prefix in user.name.
       patterns:
-        - '%{DATA:host.hostname}\\%{DATA:user.name}@%{DATA:user.domain}'
-        - '%{DATA:host.hostname}\\%{DATA:user.name}'
-        - '%{DATA:user.name}@%{DATA:user.domain}'
-        - '%{DATA:user.name}'
+        - '%{DATA:host.hostname}\\%{DATA:user.name}@%{GREEDYDATA:user.domain}'
+        - '%{DATA:host.hostname}\\%{GREEDYDATA:user.name}'
+        - '%{DATA:user.name}@%{GREEDYDATA:user.domain}'
+        - '%{GREEDYDATA:user.name}'
       ignore_missing: true
-      ignore_failure: true
   - append:
       field: related.user
       tag: append_user_name_into_related_user
