@@ -246,8 +246,8 @@ processors:
           def userObj = new HashMap();
           if (report.id != null) { userObj.put("id", report.id); }
           if (report.user_principal_name != null) { userObj.put("name", report.user_principal_name); }
+          if (report.mail != null) { userObj.put("email", report.mail); }
           if (!userObj.isEmpty()) { entry.put("user", userObj); }
-          if (report.mail != null) { entry.put("email", report.mail); }
           if (!entry.isEmpty()) { supervises.add(entry); }
         }
         ctx.user = ctx.user ?: new HashMap();

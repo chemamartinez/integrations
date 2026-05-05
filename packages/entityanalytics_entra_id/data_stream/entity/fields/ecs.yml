@@ -133,9 +133,9 @@
             - name: supervises
               type: group
               fields:
-                - name: email
-                  type: keyword
                 - name: user.id
+                  type: keyword
+                - name: user.email
                   type: keyword
                 - name: user.name
                   type: keyword
