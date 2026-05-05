@@ -264,7 +264,7 @@ processors:
           value: "{{{_ingest._value.app_role_display_name}}}"
           tag: append_app_role_display_name_to_permissions
           allow_duplicates: false
-          if: ctx._ingest?._value?.app_role_display_name != null
+          ignore_empty_values: true
 on_failure:
   - append:
       field: error.message
