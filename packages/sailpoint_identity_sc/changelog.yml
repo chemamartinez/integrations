@@ -2,7 +2,7 @@
   changes:
     - description: Add `identities` data stream for human identity records via the Search API.
       type: enhancement
-      link: https://github.com/elastic/integrations/pull/99999
+      link: https://github.com/elastic/integrations/pull/20196
 - version: "1.3.0"
   changes:
     - description: Enable Agentless deployment.
