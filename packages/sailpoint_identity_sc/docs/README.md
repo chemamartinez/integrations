@@ -38,22 +38,22 @@ An example event for `events` looks as following:
 {
     "@timestamp": "2024-12-12T10:58:27.962Z",
     "agent": {
-        "ephemeral_id": "7702ef35-3884-419f-a9ad-6fffaed99d93",
-        "id": "3df7e3e0-8481-45c7-bd71-db14cc6b5fb0",
-        "name": "elastic-agent-86913",
+        "ephemeral_id": "b6ceb572-1179-4497-84df-0207501ecaeb",
+        "id": "f0a879aa-5075-4959-a069-27ed3f2fcca1",
+        "name": "elastic-agent-20285",
         "type": "filebeat",
         "version": "9.4.1"
     },
     "data_stream": {
         "dataset": "sailpoint_identity_sc.events",
-        "namespace": "14148",
+        "namespace": "75813",
         "type": "logs"
     },
     "ecs": {
         "version": "8.11.0"
     },
     "elastic_agent": {
-        "id": "3df7e3e0-8481-45c7-bd71-db14cc6b5fb0",
+        "id": "f0a879aa-5075-4959-a069-27ed3f2fcca1",
         "snapshot": false,
         "version": "9.4.1"
     },
@@ -63,7 +63,7 @@ An example event for `events` looks as following:
             "iam"
         ],
         "dataset": "sailpoint_identity_sc.events",
-        "ingested": "2026-07-15T18:15:07Z",
+        "ingested": "2026-07-17T12:44:00Z",
         "kind": "event",
         "module": "sailpoint_identity_sc",
         "type": [
