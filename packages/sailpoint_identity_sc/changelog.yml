@@ -2,7 +2,7 @@
   changes:
     - description: Add `machine_identities` data stream for machine identity records via the Machine Identities API.
       type: enhancement
-      link: https://github.com/elastic/integrations/pull/99999
+      link: https://github.com/elastic/integrations/pull/20198
 - version: "1.3.0"
   changes:
     - description: Enable Agentless deployment.
