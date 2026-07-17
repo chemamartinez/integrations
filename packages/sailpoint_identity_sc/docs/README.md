@@ -9,24 +9,30 @@ Agentless deployments are only supported in Elastic Serverless and Elastic Cloud
 
 ## Data Streams
 
-- **`events`**: Provides audit data that includes actions such as `USER_MANAGEMENT`, `PASSWORD_ACTIVITY`, `PROVISIONING`, `ACCESS_ITEM`, `SOURCE_MANAGEMENT`, `CERTIFICATION`, `AUTH`, `SYSTEM_CONFIG`, `ACCESS_REQUEST`, `SSO`, `WORKFLOW`, `SEGMENT` and more.
-- [Audit Events](https://community.sailpoint.com/t5/IdentityNow-Wiki/Audit-Events-in-Cloud-Audit/ta-p/218727) are records that a user took action in an [IdentityNow](https://www.sailpoint.com/products/identitynow) tenant, or other service like [IdentityAI](https://www.sailpoint.com/products/ai-driven-identity-security). Audit Events are structurally and conceptually very similar to [IdentityIQ's](https://www.sailpoint.com/products/identity-security-software/identity-iq)Audit Events, but have evolved in several ways.
-- This data stream leverages the Sailpoint identity security cloud API's [/v2025/search](https://developer.sailpoint.com/docs/api/v2025/search-post) endpoint to retrieve event logs.
+- **`events`**: Provides audit data that includes actions such as `USER_MANAGEMENT`, `PASSWORD_ACTIVITY`, `PROVISIONING`, `ACCESS_ITEM`, `SOURCE_MANAGEMENT`, `CERTIFICATION`, `AUTH`, `SYSTEM_CONFIG`, `ACCESS_REQUEST`, `SSO`, `WORKFLOW`, `SEGMENT` and more. [Audit Events](https://community.sailpoint.com/t5/IdentityNow-Wiki/Audit-Events-in-Cloud-Audit/ta-p/218727) are records that a user took action in an [IdentityNow](https://www.sailpoint.com/products/identitynow) tenant, or other service like [IdentityAI](https://www.sailpoint.com/products/ai-driven-identity-security). This data stream leverages the [/v2026/search](https://developer.sailpoint.com/docs/api/v2026/search-post) endpoint.
+
+- **`machine_identities`**: Collects machine/non-human identity records (service accounts, application accounts, bots, and AI agents) governed by SailPoint ISC. Each document represents a machine identity with its owner relationships and held entitlements. Uses the experimental [Machine Identities API](https://developer.sailpoint.com/docs/api/v2026/list-machine-identities/) with a full offset-based scan each collection cycle. **Note:** This data stream depends on an experimental SailPoint API (`X-SailPoint-Experimental: true`). The API may change without notice in future SailPoint releases. HTTP 404 and 501 responses are treated as "feature not enabled" rather than errors.
 
 ## Requirements
 
-### Generate a Personal Access Token (PAT)
+### Create an OAuth2 API Client
 
-Log in to the application with an administrator account and generate a **Personal Access Token (PAT)**. Personal access tokens are associated with a user in **Sailpoint identity security cloud** and inherit the user's permission level (e.g., Admin, Helpdesk, etc.) to determine access.
+This integration uses OAuth2 `client_credentials` to authenticate against the SailPoint ISC API.
 
-To create a **Personal Access Token (PAT)** using an **admin account**, follow the instructions provided in the official documentation:  
-[Generate a Personal Access Token](https://developer.sailpoint.com/docs/api/v2024/authentication#generate-a-personal-access-token).
+1. Log in to the SailPoint ISC admin console.
+2. Navigate to **Admin → Security Settings → API Management**.
+3. Click **Create API Client**, select **Client Credentials** as grant type, and grant the following scopes:
+   - `sp:search:read` — required for the `events` and `identities` data streams
+   - `idn:mis-identity:read` and `idn:mis-identity:manage` — required for the `machine_identities` data stream (experimental API)
+4. Note the generated **Client ID** and **Client Secret** for use in the integration configuration.
+
+For further details see the official [Authentication documentation](https://developer.sailpoint.com/docs/api/authentication).
 
 ## Logs
 
 ### Events
 
-Event documents can be found by setting the following filter: 
+Event documents can be found by setting the following filter:
 `event.dataset : "sailpoint_identity_sc.events"`
 
 An example event for `events` looks as following:
@@ -215,4 +221,162 @@ The following non-ECS fields are used in events documents:
 | sailpoint_identity_sc.events.tracking_number | Identifier for the group of events. | keyword |
 | sailpoint_identity_sc.events.type | Type of event. Refer to the Event Types list for more details. Example: "IDENTITY_PROCESSING". | keyword |
 
+
+### Machine Identities
+
+Machine identity documents can be found by setting the following filter:
+`event.dataset : "sailpoint_identity_sc.machine_identities"`
+
+Machine identity documents carry ECS entity fields (`service.entity.*`) that enable entity analytics for non-human identities such as service accounts, application accounts, bots, and AI agents.
+
+An example event for `machine_identities` looks as following:
+
+```json
+{
+    "@timestamp": "2025-01-10T08:45:00.000Z",
+    "agent": {
+        "ephemeral_id": "91246a6a-985b-4132-a247-04499d1761e4",
+        "id": "0c85dfcd-a83d-47a1-9426-84c2c4b0a534",
+        "name": "elastic-agent-56306",
+        "type": "filebeat",
+        "version": "9.4.1"
+    },
+    "data_stream": {
+        "dataset": "sailpoint_identity_sc.machine_identities",
+        "namespace": "18203",
+        "type": "logs"
+    },
+    "ecs": {
+        "version": "9.4.0"
+    },
+    "elastic_agent": {
+        "id": "0c85dfcd-a83d-47a1-9426-84c2c4b0a534",
+        "snapshot": false,
+        "version": "9.4.1"
+    },
+    "event": {
+        "agent_id_status": "verified",
+        "category": [
+            "iam"
+        ],
+        "created": "2024-01-15T10:30:00.000Z",
+        "dataset": "sailpoint_identity_sc.machine_identities",
+        "ingested": "2026-07-17T17:57:50Z",
+        "kind": "asset",
+        "module": "sailpoint_identity_sc",
+        "original": "{\"attributes\":{\"env\":\"production\",\"team\":\"Platform\"},\"created\":\"2024-01-15T10:30:00Z\",\"datasetId\":\"ds-id-aabbccdd-1111-2222-3333-000000000001\",\"description\":\"Example service account for integration tests.\",\"id\":\"mi-id-aabbccdd-1111-2222-3333-000000000001\",\"manuallyCreated\":false,\"manuallyEdited\":false,\"modified\":\"2025-01-10T08:45:00Z\",\"name\":\"svc-example-service\",\"nativeIdentity\":\"svc-example:prod:00001\",\"owners\":{\"primaryIdentity\":{\"id\":\"00000000000000000000000000000001\",\"name\":\"alice.example\",\"type\":\"IDENTITY\"},\"secondaryIdentities\":[]},\"source\":{\"id\":\"src-id-aabbccdd-1111-2222-3333-000000000001\",\"name\":\"Example Directory\",\"type\":\"SOURCE\"},\"sourceId\":\"src-id-aabbccdd-1111-2222-3333-000000000001\",\"subtype\":\"Application\",\"userEntitlements\":[],\"uuid\":\"uuid-aabbccdd-1111-2222-3333-000000000001\"}",
+        "type": [
+            "info"
+        ]
+    },
+    "input": {
+        "type": "cel"
+    },
+    "related": {
+        "user": [
+            "alice.example"
+        ]
+    },
+    "sailpoint_identity_sc": {
+        "machine_identity": {
+            "attributes": {
+                "env": "production",
+                "team": "Platform"
+            },
+            "created": "2024-01-15T10:30:00.000Z",
+            "dataset_id": "ds-id-aabbccdd-1111-2222-3333-000000000001",
+            "description": "Example service account for integration tests.",
+            "manually_created": false,
+            "manually_edited": false,
+            "modified": "2025-01-10T08:45:00.000Z",
+            "native_identity": "svc-example:prod:00001",
+            "owners": {
+                "primary": {
+                    "id": "00000000000000000000000000000001",
+                    "name": "alice.example"
+                }
+            },
+            "source": {
+                "id": "src-id-aabbccdd-1111-2222-3333-000000000001",
+                "name": "Example Directory"
+            },
+            "source_id": "src-id-aabbccdd-1111-2222-3333-000000000001",
+            "uuid": "uuid-aabbccdd-1111-2222-3333-000000000001"
+        }
+    },
+    "service": {
+        "entity": {
+            "id": "mi-id-aabbccdd-1111-2222-3333-000000000001",
+            "name": "svc-example-service",
+            "type": [
+                "service"
+            ]
+        },
+        "id": "mi-id-aabbccdd-1111-2222-3333-000000000001",
+        "name": "svc-example-service",
+        "type": "Application"
+    },
+    "tags": [
+        "preserve_original_event",
+        "forwarded",
+        "sailpoint_identity_sc.machine_identities"
+    ]
+}
+```
+
+**ECS Field Reference**
+
+Please refer to the following [document](https://www.elastic.co/guide/en/ecs/current/ecs-field-reference.html) for detailed information on ECS fields.
+
+The following non-ECS fields are used in machine_identities documents:
+
+**Exported fields**
+
+| Field | Description | Type |
+|---|---|---|
+| @timestamp | Date/time when the event originated. This is the date/time extracted from the event, typically representing when the event was generated by the source. If the event source has no original timestamp, this value is typically populated by the first time the event was received by the pipeline. Required field for all events. | date |
+| data_stream.dataset | The field can contain anything that makes sense to signify the source of the data. Examples include `nginx.access`, `prometheus`, `endpoint` etc. For data streams that otherwise fit, but that do not have dataset set we use the value "generic" for the dataset value. `event.dataset` should have the same value as `data_stream.dataset`. Beyond the Elasticsearch data stream naming criteria noted above, the `dataset` value has additional restrictions:   \* Must not contain `-`   \* No longer than 100 characters | constant_keyword |
+| data_stream.namespace | A user defined namespace. Namespaces are useful to allow grouping of data. Many users already organize their indices this way, and the data stream naming scheme now provides this best practice as a default. Many users will populate this field with `default`. If no value is used, it falls back to `default`. Beyond the Elasticsearch index naming criteria noted above, `namespace` value has the additional restrictions:   \* Must not contain `-`   \* No longer than 100 characters | constant_keyword |
+| data_stream.type | An overarching type for the data stream. Currently allowed values are "logs" and "metrics". We expect to also add "traces" and "synthetics" in the near future. | constant_keyword |
+| ecs.version | ECS version this event conforms to. `ecs.version` is a required field and must exist in all events. When querying across multiple indices -- which may conform to slightly different ECS versions -- this field lets integrations adjust to the schema version of the events. | keyword |
+| event.category | This is one of four ECS Categorization Fields, and indicates the second level in the ECS category hierarchy. `event.category` represents the "big buckets" of ECS categories. For example, filtering on `event.category:process` yields all events relating to process activity. This field is closely related to `event.type`, which is used as a subcategory. This field is an array. This will allow proper categorization of some events that fall in multiple categories. | keyword |
+| event.created | `event.created` contains the date/time when the event was first read by an agent, or by your pipeline. This field is distinct from `@timestamp` in that `@timestamp` typically contain the time extracted from the original event. In most situations, these two timestamps will be slightly different. The difference can be used to calculate the delay between your source generating an event, and the time when your agent first processed it. This can be used to monitor your agent's or pipeline's ability to keep up with your event source. In case the two timestamps are identical, `@timestamp` should be used. | date |
+| event.dataset | Name of the dataset. If an event source publishes more than one type of log or events (e.g. access log, error log), the dataset is used to specify which one the event comes from. It's recommended but not required to start the dataset name with the module name, followed by a dot, then the dataset name. | constant_keyword |
+| event.kind | This is one of four ECS Categorization Fields, and indicates the highest level in the ECS category hierarchy. `event.kind` gives high-level information about what type of information the event contains, without being specific to the contents of the event. For example, values of this field distinguish alert events from metric events. The value of this field can be used to inform how these kinds of events should be handled. They may warrant different retention, different access control, it may also help understand whether the data is coming in at a regular interval or not. | keyword |
+| event.module | Name of the module this data is coming from. If your monitoring agent supports the concept of modules or plugins to process events of a given source (e.g. Apache logs), `event.module` should contain the name of this module. | constant_keyword |
+| event.original | Raw text message of entire event. Used to demonstrate log integrity or where the full log message (before splitting it up in multiple parts) may be required, e.g. for reindex. This field is not indexed and doc_values are disabled. It cannot be searched, but it can be retrieved from `_source`. If users wish to override this and index this field, please see `Field data types` in the `Elasticsearch Reference`. | keyword |
+| event.type | This is one of four ECS Categorization Fields, and indicates the third level in the ECS category hierarchy. `event.type` represents a categorization "sub-bucket" that, when used along with the `event.category` field values, enables filtering events down to a level appropriate for single visualization. This field is an array. This will allow proper categorization of some events that fall in multiple event types. | keyword |
+| input.type | Input type. | keyword |
+| related.user | All the user names or other user identifiers seen on the event. | keyword |
+| sailpoint_identity_sc.machine_identity.attributes | Dynamic attribute map from the machine identity record (tenant-specific keys). | flattened |
+| sailpoint_identity_sc.machine_identity.created | Timestamp when the machine identity was created. | date |
+| sailpoint_identity_sc.machine_identity.dataset_id | Dataset ID associated with this machine identity record. | keyword |
+| sailpoint_identity_sc.machine_identity.description | Free-text description of the machine identity. | text |
+| sailpoint_identity_sc.machine_identity.manually_created | Indicates whether the machine identity was manually created. | boolean |
+| sailpoint_identity_sc.machine_identity.manually_edited | Indicates whether the machine identity was manually edited. | boolean |
+| sailpoint_identity_sc.machine_identity.modified | Timestamp when the machine identity was last modified. | date |
+| sailpoint_identity_sc.machine_identity.native_identity | Account name assigned to the machine identity on the source system. | keyword |
+| sailpoint_identity_sc.machine_identity.owners.primary.id | ID of the primary owner identity. | keyword |
+| sailpoint_identity_sc.machine_identity.owners.primary.name | Account name of the primary owner identity. | keyword |
+| sailpoint_identity_sc.machine_identity.owners.secondary.id | ID of the secondary owner identity. | keyword |
+| sailpoint_identity_sc.machine_identity.owners.secondary.name | Account name of the secondary owner identity. | keyword |
+| sailpoint_identity_sc.machine_identity.owners.secondary.type | Type of the secondary owner reference. | keyword |
+| sailpoint_identity_sc.machine_identity.source.id | ID of the source system associated with this machine identity. | keyword |
+| sailpoint_identity_sc.machine_identity.source.name | Name of the source system associated with this machine identity. | keyword |
+| sailpoint_identity_sc.machine_identity.source_id | Plain source ID string from the machine identity record. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.displayName | Display name of the entitlement. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.entitlementId | ID of the entitlement held by this machine identity. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.source.id | ID of the entitlement source. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.source.name | Name of the entitlement source. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.source.type | Type of the entitlement source. | keyword |
+| sailpoint_identity_sc.machine_identity.user_entitlements.sourceId | ID of the source system providing this entitlement. | keyword |
+| sailpoint_identity_sc.machine_identity.uuid | UUID of the machine identity on the source system. | keyword |
+| service.entity.id | A unique identifier for the entity. When multiple identifiers exist, this should be the most stable and commonly used identifier that: 1) persists across the entity's lifecycle, 2) ensures uniqueness within its scope, 3) is commonly used for queries and correlation, and 4) is readily available in most observations (logs/events). For entities with dedicated field sets (for example, host, user), this value should match the corresponding \*.id field. Alternative identifiers (for example, ARNs values in AWS, URLs) can be preserved in the raw field. | keyword |
+| service.entity.name | The name of the entity. The keyword field enables exact matches for filtering and aggregations, while the text field enables full-text search. For entities with dedicated field sets (for example, `host`), this field should mirrors the corresponding \*.name value. | keyword |
+| service.entity.name.text | Multi-field of `service.entity.name`. | match_only_text |
+| service.entity.type | A standardized high-level classification of the entity. This provides a normalized way to group similar entities across different providers or systems. Example values: `bucket`, `database`, `container`, `function`, `queue`, `host`, `user`, `application`, `session`, `cloud`, `orchestrator`, etc. If an entity is nested under a top-level namespace like `host` or `cloud`, or similar, its type array should include the matching value — for example, `host` or `cloud`. | keyword |
+| service.id | Unique identifier of the running service. If the service is comprised of many nodes, the `service.id` should be the same for all nodes. This id should uniquely identify the service. This makes it possible to correlate logs and metrics for one specific service, no matter which particular node emitted the event. Note that if you need to see the events from one specific host of the service, you should filter on that `host.name` or `host.id` instead. | keyword |
+| service.name | Name of the service data is collected from. The name of the service is normally user given. This allows for distributed services that run on multiple hosts to correlate the related instances based on the name. In the case of Elasticsearch the `service.name` could contain the cluster name. For Beats the `service.name` is by default a copy of the `service.type` field if no name is specified. | keyword |
+| service.type | The type of the service data is collected from. The type can be used to group and correlate logs and metrics from one service type. Example: If logs or metrics are collected from Elasticsearch, `service.type` would be `elasticsearch`. | keyword |
+| tags | List of keywords used to tag each event. | keyword |
 
