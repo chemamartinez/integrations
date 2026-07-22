@@ -974,6 +974,39 @@ processors:
 
         ctx.process.args = commandLineToArgv(ctx.process.command_line);
         ctx.process.args_count = ctx.process.args.length;
+  - script:
+      description: Map CommandHistory field to process.command_line
+      tag: script_command_history_to_process_command_line_8c3e1f92
+      if: |-
+        ctx.crowdstrike?.event_simpleName == 'CommandHistory' &&
+        ctx.crowdstrike?.CommandHistory instanceof String &&
+        ctx.crowdstrike.CommandHistory != ''
+      source: |-
+        def history = ctx.crowdstrike.CommandHistory;
+        if (ctx.process == null) {
+          ctx.process = new HashMap();
+        }
+        ctx.process.command_line = history;
+        def parts = history.splitOnToken('¶');
+        def commands = new ArrayList();
+        for (def cmd : parts) {
+          def trimmed = cmd.trim();
+          if (!trimmed.isEmpty()) {
+            commands.add(trimmed);
+          }
+        }
+        ctx.crowdstrike.CommandHistory = commands;
+      on_failure:
+        - append:
+            field: error.message
+            value: "Failed to parse CommandHistory: {{{_ingest.on_failure_message}}}"
+  - set:
+      tag: set_process_user_name_command_history_4e2a8f1c
+      description: Map crowdstrike.UserName to process.user.name for CommandHistory events.
+      if: ctx.crowdstrike?.event_simpleName == 'CommandHistory' && ctx.crowdstrike?.UserName instanceof String && ctx.crowdstrike.UserName != ''
+      field: process.user.name
+      copy_from: crowdstrike.UserName
+      ignore_empty_value: true
   - rename:
       tag: rename_crowdstrike_ImageFileName_to_process_executable_1e9d3140
       if: ctx._temp?.isLibrary != true && ctx._temp?.isDriver != true
@@ -1109,6 +1142,18 @@ processors:
       field: crowdstrike.TargetProcessId
       target_field: process.entity_id
       ignore_missing: true
+  - script:
+      tag: script_process_interactive_logon_type_9b3d6c7a
+      description: Set process.interactive from crowdstrike.LogonType; types 2 (Interactive), 10 (RemoteInteractive), and 11 (CachedInteractive) indicate an interactive shell session.
+      if: ctx.crowdstrike?.LogonType instanceof String && ctx.crowdstrike.LogonType != ''
+      source: |-
+        def logonType = ctx.crowdstrike.LogonType;
+        if (ctx.process == null) ctx.process = new HashMap();
+        ctx.process.interactive = (logonType == '2' || logonType == '10' || logonType == '11');
+      on_failure:
+        - append:
+            field: error.message
+            value: "Failed to set process.interactive from LogonType: {{{_ingest.on_failure_message}}}"
   - convert:
       tag: convert_crowdstrike_ParentProcessId_to_string_53eeefcb
       if: ctx.crowdstrike?.ParentProcessId != null && !(ctx.crowdstrike.ParentProcessId instanceof String)
