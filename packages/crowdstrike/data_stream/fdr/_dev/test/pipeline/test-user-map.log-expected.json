@@ -25,9 +25,6 @@
                     "type": "windows"
                 }
             },
-            "process": {
-                "interactive": false
-            },
             "related": {
                 "user": [
                     "DOMAIN\\BRADLEYA",

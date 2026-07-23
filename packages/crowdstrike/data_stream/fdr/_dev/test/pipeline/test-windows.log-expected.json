@@ -8847,9 +8847,6 @@
                 "serial_number": "e4b4d652bb68d0b6eaf25c3a357bd566",
                 "version": "2c8b.4.ae3729d.e6"
             },
-            "process": {
-                "interactive": false
-            },
             "related": {
                 "hash": [
                     "3440491101"

@@ -8260,9 +8260,6 @@
                 "serial_number": "ffffffffe0104823bd3de859d5bc8bc7",
                 "version": "1007.3.0011603.1"
             },
-            "process": {
-                "interactive": false
-            },
             "related": {
                 "hash": [
                     "3950066843"
@@ -11592,9 +11589,6 @@
                 "serial_number": "ffffffffe0104823bd3de859d5bc8bc7",
                 "version": "1007.3.0011603.1"
             },
-            "process": {
-                "interactive": false
-            },
             "related": {
                 "hash": [
                     "3950066843"
@@ -12141,9 +12135,6 @@
                     "type": "macos"
                 }
             },
-            "process": {
-                "interactive": true
-            },
             "related": {
                 "hash": [
                     "821711964"
@@ -12621,9 +12612,6 @@
                 ],
                 "serial_number": "ffffffffe0104823bd3de859d5bc8bc7",
                 "version": "1007.3.0011603.1"
-            },
-            "process": {
-                "interactive": false
             },
             "related": {
                 "hash": [

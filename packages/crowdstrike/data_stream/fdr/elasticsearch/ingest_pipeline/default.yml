@@ -975,7 +975,12 @@ processors:
         ctx.process.args = commandLineToArgv(ctx.process.command_line);
         ctx.process.args_count = ctx.process.args.length;
   - script:
-      description: Map CommandHistory field to process.command_line
+      description: >-
+        Map the CommandHistory field to process.command_line and split into an
+        array at crowdstrike.CommandHistory. CrowdStrike uses U+00B6 PILCROW
+        SIGN (¶) as the delimiter between individual commands in the history
+        string; this character has no formal documentation from CrowdStrike but
+        is consistently observed in FDR CommandHistory events.
       tag: script_command_history_to_process_command_line_8c3e1f92
       if: |-
         ctx.crowdstrike?.event_simpleName == 'CommandHistory' &&
@@ -983,9 +988,7 @@ processors:
         ctx.crowdstrike.CommandHistory != ''
       source: |-
         def history = ctx.crowdstrike.CommandHistory;
-        if (ctx.process == null) {
-          ctx.process = new HashMap();
-        }
+        ctx.process = ctx.process ?: [:];
         ctx.process.command_line = history;
         def parts = history.splitOnToken('¶');
         def commands = new ArrayList();
@@ -1142,18 +1145,6 @@ processors:
       field: crowdstrike.TargetProcessId
       target_field: process.entity_id
       ignore_missing: true
-  - script:
-      tag: script_process_interactive_logon_type_9b3d6c7a
-      description: Set process.interactive from crowdstrike.LogonType; types 2 (Interactive), 10 (RemoteInteractive), and 11 (CachedInteractive) indicate an interactive shell session.
-      if: ctx.crowdstrike?.LogonType instanceof String && ctx.crowdstrike.LogonType != ''
-      source: |-
-        def logonType = ctx.crowdstrike.LogonType;
-        if (ctx.process == null) ctx.process = new HashMap();
-        ctx.process.interactive = (logonType == '2' || logonType == '10' || logonType == '11');
-      on_failure:
-        - append:
-            field: error.message
-            value: "Failed to set process.interactive from LogonType: {{{_ingest.on_failure_message}}}"
   - convert:
       tag: convert_crowdstrike_ParentProcessId_to_string_53eeefcb
       if: ctx.crowdstrike?.ParentProcessId != null && !(ctx.crowdstrike.ParentProcessId instanceof String)
@@ -2843,6 +2834,31 @@ processors:
             ctx.crowdstrike.remove(field);
           }
         }
+
+  - script:
+      tag: script_process_interactive_logon_type_9b3d6c7a
+      description: >-
+        Set process.interactive from crowdstrike.LogonType whenever a process
+        object is present in the event. Placed after all other process
+        processors so that any processor that creates a process object
+        (TargetProcessId, ContextProcessId, etc.) has already run. Logon types
+        2 (Interactive), 10 (RemoteInteractive), 11 (CachedInteractive), and 12
+        (CachedRemoteInteractive) indicate an interactive shell session; all
+        other types are non-interactive.
+      if: >-
+        ctx.crowdstrike?.LogonType instanceof String &&
+        ctx.crowdstrike.LogonType != '' &&
+        ctx.process != null
+      source: |-
+        // Logon type reference: 2=Interactive, 3=Network, 4=Batch, 5=Service,
+        // 7=Unlock, 8=NetworkCleartext, 9=NewCredentials, 10=RemoteInteractive,
+        // 11=CachedInteractive, 12=CachedRemoteInteractive, 13=CachedUnlock
+        def logonType = ctx.crowdstrike.LogonType;
+        ctx.process.interactive = (logonType == '2' || logonType == '10' || logonType == '11' || logonType == '12');
+      on_failure:
+        - append:
+            field: error.message
+            value: "Failed to set process.interactive from LogonType: {{{_ingest.on_failure_message}}}"
 
   # Cleanup.
   - remove:
