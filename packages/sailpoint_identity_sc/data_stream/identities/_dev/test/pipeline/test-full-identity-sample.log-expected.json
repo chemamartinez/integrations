@@ -498,7 +498,15 @@
                 "full_name": "Jordan Reed",
                 "group": {
                     "name": [
-                        "All Employees"
+                        "All Employees",
+                        "Engineering",
+                        "SecCompliance",
+                        "Development",
+                        "DEV_WestCoast",
+                        "ENG_Internal",
+                        "Contractors",
+                        "campusAccess",
+                        "All_Users"
                     ]
                 },
                 "id": "identity-id-jrd-001",
