@@ -66,17 +66,46 @@ processors:
       formats:
         - yyyyMMdd'T'HHmmss
   - date:
-      field: json.scan_details.created_at
-      target_field: json.scan_details.created_at
-      if: ctx.json?.scan_details?.created_at != null && ctx.json.scan_details.created_at != ''
+      field: json.scan_details.info.scan_start
+      target_field: json.scan_details.info.scan_start
+      if: ctx.json?.scan_details?.info?.scan_start != null && ctx.json.scan_details.info.scan_start != ''
       formats:
-        - ISO8601
+        - UNIX
   - date:
-      field: json.scan_details.updated_at
-      target_field: json.scan_details.updated_at
-      if: ctx.json?.scan_details?.updated_at != null && ctx.json.scan_details.updated_at != ''
+      field: json.scan_details.info.scan_end
+      target_field: json.scan_details.info.scan_end
+      if: ctx.json?.scan_details?.info?.scan_end != null && ctx.json.scan_details.info.scan_end != ''
       formats:
-        - ISO8601
+        - UNIX
+  - date:
+      field: json.scan_details.info.timestamp
+      target_field: json.scan_details.info.timestamp
+      if: ctx.json?.scan_details?.info?.timestamp != null && ctx.json.scan_details.info.timestamp != ''
+      formats:
+        - UNIX
+  - foreach:
+      field: json.scan_details.history
+      ignore_missing: true
+      processor:
+        date:
+          field: _ingest._value.creation_date
+          target_field: _ingest._value.creation_date
+          formats:
+            - UNIX
+          ignore_failure: true
+  - foreach:
+      field: json.scan_details.history
+      ignore_missing: true
+      processor:
+        date:
+          field: _ingest._value.last_modification_date
+          target_field: _ingest._value.last_modification_date
+          formats:
+            - UNIX
+          ignore_failure: true
+  - remove:
+      field: json.scan_details.filters
+      ignore_missing: true
   - rename:
       field: json
       target_field: tenable_io.scan
