@@ -1,9 +1,9 @@
 # newer versions go on top
 - version: "4.13.0"
   changes:
-    - description: Fix the scan data stream to use the correct VM scan details endpoint (GET /scans/{id}) instead of the WAS endpoint (GET /was/v2/scans/{id}), which was causing all Phase 2 detail requests to return 404 and producing no scan documents.
+    - description: Replace the scan details endpoint with GET /scans/{id} and remap the scan_details fields to the standard VM scan-details schema.
       type: bugfix
-      link: https://github.com/elastic/integrations/pull/99999
+      link: https://github.com/elastic/integrations/pull/20347
 - version: "4.12.0"
   changes:
     - description: Allow user configuration of maximum number of CEL executions for the asset, audit, plugin, and scan data streams.
